@@ -6,7 +6,7 @@
 /*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:01:11 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/27 15:42:10 by abollia          ###   ########.fr       */
+/*   Updated: 2025/06/27 16:01:14 by abollia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_env	*init_env(char **envp)
 	{
 		env->envp[i] = ft_strdup(envp[i]);
 		if (!env->envp[i])
-			return (free_split(env->envp), NULL);
+			return (free_env(env), NULL);
 		i++;
 	}
 	env->envp[i] = NULL;

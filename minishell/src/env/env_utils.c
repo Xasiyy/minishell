@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 12:12:12 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/27 11:11:31 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/06/27 16:47:14 by abollia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ int	add_env_entry(char ***env, const char *key, const char *value)
 	}
 	new_env[count] = new_var;
 	new_env[count + 1] = NULL;
-	free(*env);
+	free_split(*env);
 	*env = new_env;
 	return (0);
 }

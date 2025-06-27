@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:46:34 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/17 16:46:32 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/06/27 15:59:29 by abollia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@ void	free_shell(t_shell *shell, int force_env)
 		return ;
 	if ((getpid() == shell->main_pid || force_env) && shell->env)
 	{
-		free_env(shell->env);
-		shell->env = NULL;
+		if (shell->env)
+		{
+			free_env(shell->env);
+			shell->env = NULL;
+		}
 	}
 	free_all(shell);
 	free(shell);
