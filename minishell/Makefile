@@ -1,5 +1,6 @@
 # =================================== CONFIG =================================== #
 
+MAKEFLAGS   += --no-print-directory
 NAME        = minishell
 CC          = gcc
 CFLAGS = -Wall -Wextra -Werror -Iinclude -Ilibft -Iget_next_line -O0 -g
@@ -74,7 +75,7 @@ SRCS = builtins/builtins_cd.c \
 
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
 
-VALGRIND = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --trace-children=yes --suppressions=minishell_tester/local.supp
+VALGRIND = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --trace-children=yes --suppressions=minishell_tester/valgrind.supp
 
 # ================================ COMPILATION ================================= #
 

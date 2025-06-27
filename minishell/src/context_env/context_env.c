@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   context_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:01:11 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/17 15:42:09 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/06/27 15:42:10 by abollia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_env	*init_env(char **envp)
 	{
 		env->envp[i] = ft_strdup(envp[i]);
 		if (!env->envp[i])
-			return (NULL);
+			return (free_split(env->envp), NULL);
 		i++;
 	}
 	env->envp[i] = NULL;
