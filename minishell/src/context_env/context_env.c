@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   context_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:01:11 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/17 15:42:09 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/06/27 16:00:09 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,16 @@ t_env	*init_env(char **envp)
 	count = count_env(envp);
 	env->envp = malloc(sizeof(char *) * (count + 1));
 	if (!env->envp)
-		return (free(env), NULL);
+		return (free_env(env), NULL);
 	i = 0;
 	while (envp[i])
 	{
 		env->envp[i] = ft_strdup(envp[i]);
 		if (!env->envp[i])
+		{
+			free_env(env);
 			return (NULL);
+		}
 		i++;
 	}
 	env->envp[i] = NULL;

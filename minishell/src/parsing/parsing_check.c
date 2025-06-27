@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_check.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:32:43 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/17 16:22:15 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/06/27 17:39:49 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	check_pipes_and_redirs(char **tokens)
 	{
 		if (ft_strcmp(tokens[i], "|") == 0)
 		{
-			if (tokens[i + 1] && ft_strcmp(tokens[i + 1], "|") == 0)
+			if ((tokens[i + 1] && ft_strcmp(tokens[i + 1], "|") == 0))
 			{
 				print_unexpected(tokens[i + 1]);
 				return (1);
