@@ -1,0 +1,39 @@
+{
+   readline_memory_leaks
+   Memcheck:Leak
+   ...
+   fun:xmalloc
+   obj:/usr/lib/*/libreadline.so*
+}
+
+{
+   readline_keymap
+   Memcheck:Leak
+   ...
+   fun:rl_make_bare_keymap
+   obj:/usr/lib/*/libreadline.so*
+}
+
+{
+   readline_bind
+   Memcheck:Leak
+   ...
+   fun:rl_bind_keyseq_if_unbound_in_map
+   obj:/usr/lib/*/libreadline.so*
+}
+
+{
+   readline_init
+   Memcheck:Leak
+   ...
+   fun:rl_initialize
+   obj:/usr/lib/*/libreadline.so*
+}
+
+{
+   readline_internal_buffer
+   Memcheck:Leak
+   fun:xrealloc
+   fun:readline_internal_setup
+   obj:/usr/lib/*/libreadline.so*
+}

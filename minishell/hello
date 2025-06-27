@@ -1,0 +1,15 @@
+<
+bin
+ft_printf
+hello
+include
+leaks_report.txt
+libft
+Makefile
+minishell
+minishell_tester
+obj
+out.txt
+src
+test_leaks.sh
+valgrind.supp

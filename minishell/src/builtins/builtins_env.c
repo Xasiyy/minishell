@@ -1,0 +1,80 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtins_env_cd.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/21 13:21:29 by ncullu            #+#    #+#             */
+/*   Updated: 2025/05/27 12:54:34 by ncullu           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minishell.h"
+
+// Affiche le chemin absolu du rép courant
+int	builtin_pwd(void)
+{
+	char	cwd[1024];
+
+	if (getcwd(cwd, sizeof(cwd)) != NULL)
+	{
+		write(1, cwd, ft_strlen(cwd));
+		write(1, "\n", 1);
+		return (0);
+	}
+	perror("pwd");
+	return (1);
+}
+
+// Affiche ttes les variables d’env actuelles
+int	builtin_env(char **env)
+{
+	int	i;
+
+	i = 0;
+	while (env[i])
+	{
+		write(1, env[i], ft_strlen(env[i]));
+		write(1, "\n", 1);
+		i++;
+	}
+	return (0);
+}
+
+// Supprime une variable d’env
+int	builtin_unset(char **cmd, t_env *env_struct)
+{
+	int	i;
+
+	i = 1;
+	while (cmd[i])
+	{
+		if (unset_env_var(&env_struct->envp, cmd[i]) != 0)
+		{
+			perror("unset");
+			return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
+// Verifie si variabable d env existe deja
+int	env_var_exists(char **env, const char *key)
+{
+	int		i;
+	size_t	len;
+
+	if (!env || !key)
+		return (0);
+	len = ft_strlen(key);
+	i = 0;
+	while (env[i])
+	{
+		if (ft_strncmp(env[i], key, len) == 0 && env[i][len] == '=')
+			return (1);
+		i++;
+	}
+	return (0);
+}
