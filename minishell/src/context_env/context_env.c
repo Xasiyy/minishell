@@ -6,7 +6,7 @@
 /*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:01:11 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/27 16:01:14 by abollia          ###   ########.fr       */
+/*   Updated: 2025/06/27 17:42:54 by abollia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_env	*init_env(char **envp)
 	count = count_env(envp);
 	env->envp = malloc(sizeof(char *) * (count + 1));
 	if (!env->envp)
-		return (free(env), NULL);
+		return (free_env(env), NULL);
 	i = 0;
 	while (envp[i])
 	{
