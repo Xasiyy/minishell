@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 20:35:41 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/06/27 12:10:01 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/06/28 17:41:01 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ char	*handle_heredoc(char *delimiter)
 		write(fd, "\n", 1);
 		free(line);
 	}
-	close(fd);
+	safe_close(&fd);
 	return (ft_strdup(template));
 }

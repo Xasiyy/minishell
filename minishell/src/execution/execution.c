@@ -6,7 +6,7 @@
 /*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:59:25 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/25 17:29:04 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/06/28 17:41:29 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	execute_command(t_command *cmd, char **env, int *exit_status)
 		int ret = handle_redirections(cmd);
 		dup2(save_in, STDIN_FILENO);
 		dup2(save_out, STDOUT_FILENO);
-		close(save_in);
-		close(save_out);
+		safe_close(&save_in);
+		safe_close(&save_out);
 		*exit_status = (ret == - 1);
 		return ;
 	}

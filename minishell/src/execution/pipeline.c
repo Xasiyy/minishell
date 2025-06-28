@@ -6,7 +6,7 @@
 /*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:36:17 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/22 20:06:41 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/06/28 17:41:49 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ int	execute_child_process(t_command *cmd, char **env, int prev_fd,
 		return (perror("fork"), -1);
 	*pid_out = pid;
 	if (prev_fd != 1)
-		close(prev_fd);
+		safe_close(&prev_fd);
 	if (cmd->next)
-		close(pipe_fd[1]);
+		safe_close(&pipe_fd[1]);
 	if (cmd->next)
 		return (pipe_fd[0]);
 	return (-1);
@@ -82,18 +82,18 @@ int	handle_parent_after_fork(pid_t pid, t_command *cmd, int prev_fd,
 		clean_and_exit(get_shell_context(NULL), EXIT_FAILURE);
 	}
 	if (prev_fd != -1)
-		close(prev_fd);
+		safe_close(&prev_fd);
 	if (cmd->next && pid != 0)
 	{
-		close(pipe_fd[1]);
+		safe_close(&pipe_fd[1]);
 		return (pipe_fd[0]);
 	}
 	if (!cmd->next)
 	{
 		if (pipe_fd[0] != -1)
-			close(pipe_fd[0]);
+			safe_close(&pipe_fd[0]);
 		if (pipe_fd[1] != -1)
-			close(pipe_fd[1]);
+			safe_close(&pipe_fd[1]);
 	}
 	return (-1);
 }

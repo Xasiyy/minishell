@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_helpers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:25:48 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/17 16:49:57 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/06/28 17:42:27 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	setup_child_pipes(int fd_in, int *pipe_fd)
 	{
 		if (dup2(fd_in, STDIN_FILENO) == -1)
 			cleanup_and_exit(fd_in, pipe_fd);
-		close(fd_in);
+		safe_close(&fd_in);
 	}
 	if (dup2(pipe_fd[1], STDOUT_FILENO) == -1)
 		cleanup_and_exit(fd_in, pipe_fd);
-	close(pipe_fd[0]);
-	close(pipe_fd[1]);
+	safe_close(&pipe_fd[0]);
+	safe_close(&pipe_fd[1]);
 }
 
 // Execute cmd ds le processus enfant
@@ -49,9 +49,9 @@ void	setup_parent_pipes(int fd_out, int *pipe_fd)
 		cleanup_and_exit(fd_out, pipe_fd);
 	if (dup2(fd_out, STDOUT_FILENO) == -1)
 		cleanup_and_exit(fd_out, pipe_fd);
-	close(fd_out);
-	close(pipe_fd[0]);
-	close(pipe_fd[1]);
+	safe_close(&fd_out);
+	safe_close(&pipe_fd[0]);
+	safe_close(&pipe_fd[1]);
 }
 
 // Attend la fin d un processus enfant
