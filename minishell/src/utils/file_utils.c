@@ -6,7 +6,7 @@
 /*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:57:08 by ncullu            #+#    #+#             */
-/*   Updated: 2025/05/13 16:40:31 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/06/28 17:42:45 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ int	open_output_file(const char *file)
 void	cleanup_and_exit(int fd, int *pipe_fd)
 {
 	if (fd != -1)
-		close(fd);
+		safe_close(&fd);
 	if (pipe_fd)
 	{
-		close(pipe_fd[0]);
-		close(pipe_fd[1]);
+		safe_close(&pipe_fd[0]);
+		safe_close(&pipe_fd[1]);
 	}
 	exit(1);
 }

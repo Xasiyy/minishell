@@ -6,7 +6,7 @@
 /*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:55:41 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/27 16:03:21 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/06/30 13:18:49 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	start_shell_loop(t_shell *shell)
 
 	while (1)
 	{
-		signal(SIGINT, sigint_handler);
+		//signal(SIGINT, sigint_handler);
 		line = readline("minishell$ ");
 		if (!line)
 		{

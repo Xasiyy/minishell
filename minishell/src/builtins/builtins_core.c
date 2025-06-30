@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:18:15 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/17 14:08:33 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/06/28 17:40:53 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,15 @@ int	execute_builtin_redirection(t_command *cmd, int *exit_status)
 		*exit_status = 1;
 		dup2(stdout_backup, STDOUT_FILENO);
 		dup2(stdin_backup, STDIN_FILENO);
-		close(stdout_backup);
-		close(stdin_backup);
+		safe_close(&stdout_backup);
+		safe_close(&stdin_backup);
 		return (1);
 	}
 	execute_builtin(cmd->args, exit_status);
 	dup2(stdout_backup, STDOUT_FILENO);
 	dup2(stdin_backup, STDIN_FILENO);
-	close(stdout_backup);
-	close(stdin_backup);
+	safe_close(&stdout_backup);
+	safe_close(&stdin_backup);
 	return (0);
 }
 

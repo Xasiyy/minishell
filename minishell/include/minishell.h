@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 18:00:52 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/27 11:49:33 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/06/28 17:40:33 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,6 +235,8 @@ void							wait_for_all_children(t_shell *shell,
 int								get_fd_from_redir(t_redir *redir);
 
 // free
+//safe_close.c 
+int								safe_close(int *fd);
 // clean_exit.c
 void							exit_with_perror(char *filename);
 void							handle_error(const char *msg);

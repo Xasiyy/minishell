@@ -6,7 +6,7 @@
 /*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:30:03 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/13 17:16:04 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/06/28 17:42:37 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	minishell(t_files files, char *input, char **env)
 	if (pipe(pipe_fd) == -1)
 		clean_and_exit(shell, EXIT_FAILURE);
 	exec_cmds(files, pipe_fd, cmd, env);
-	close(pipe_fd[0]);
-	close(pipe_fd[1]);
+	safe_close(&pipe_fd[0]);
+	safe_close(&pipe_fd[1]);
 	waitpid(-1, NULL, 0);
 	waitpid(-1, &status, 0);
 	if (WIFEXITED(status))

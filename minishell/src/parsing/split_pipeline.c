@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_pipeline.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 11:44:07 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/05/27 13:42:04 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/06/30 13:39:54 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ int	count_pipeline_parts(const char *str)
 		{
 			if (str[i] == '|')
 				count++;
-			else if (str[i] == '&' && str[i + 1] == '&')
+/* 			else if (str[i] == '&' && str[i + 1] == '&')
 			{
 				count++;
 				i++;
-			}
+			} */
 		}
 		i++;
 	}
@@ -80,10 +80,8 @@ char	**split_pipeline_tokens(const char *str)
 		update_quote(str[st.i], &quote);
 		if (quote == 0)
 		{
-			if (str[st.i] == '|' || (str[st.i] == '&' && str[st.i + 1] == '&'))
+			if (str[st.i] == '|')
 			{
-				if (str[st.i] == '&')
-					st.i++;
 				if (handle_pipe_split(str, parts, &st))
 					continue ;
 			}

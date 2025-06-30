@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:47:47 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/17 15:42:49 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/06/28 17:41:19 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	fork_and_run_child(t_command *cmd, char **env, int prev_fd,
 	if (prev_fd != -1)
 	{
 		dup2(prev_fd, STDIN_FILENO);
-		close(prev_fd);
+		safe_close(&prev_fd);
 	}
 	if (cmd->next)
 	{
 		dup2(pipe_fd[1], STDOUT_FILENO);
-		close(pipe_fd[0]);
-		close(pipe_fd[1]);
+		safe_close(&pipe_fd[0]);
+		safe_close(&pipe_fd[1]);
 	}
 	if (handle_redirections(cmd) == -1)
 	{

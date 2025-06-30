@@ -46,6 +46,7 @@ SRCS = builtins/builtins_cd.c \
        free/free_utils.c \
        free/memory_utils.c \
        free/clean_exit.c \
+       free/safe_close.c \
        helpers/env_helpers.c \
        helpers/execution_helpers.c \
        line_handler/line_handler.c \
@@ -74,7 +75,7 @@ SRCS = builtins/builtins_cd.c \
 
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
 
-VALGRIND = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --trace-children=yes --suppressions=minishell_tester/local.supp
+VALGRIND = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --trace-children=yes --suppressions=valgrind.supp
 
 # ================================ COMPILATION ================================= #
 
