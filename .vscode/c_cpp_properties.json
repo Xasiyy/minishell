@@ -3,16 +3,27 @@
     {
       "name": "Linux",
       "includePath": [
-        "${workspaceFolder}/include",
-        "${workspaceFolder}/src",
+        "${workspaceFolder}/minishell/include",
+        "${workspaceFolder}/minishell/libft",
+        "${workspaceFolder}/minishell/ft_printf",
+        "${workspaceFolder}/minishell/get_next_line",
+        "${workspaceFolder}/minishell/src",
         "/usr/include",
-        "/usr/local/include"
+        "/usr/local/include",
+        "/usr/include/x86_64-linux-gnu"
       ],
-      "defines": [],
+      "defines": [
+        "_POSIX_C_SOURCE=200809L"
+      ],
       "compilerPath": "/usr/bin/gcc",
-      "cStandard": "c11",
+      "cStandard": "c99",
       "cppStandard": "c++17",
-      "intelliSenseMode": "linux-gcc-x64"
+      "intelliSenseMode": "linux-gcc-x64",
+      "compilerArgs": [
+        "-Wall",
+        "-Wextra",
+        "-Werror"
+      ]
     }
   ],
   "version": 4

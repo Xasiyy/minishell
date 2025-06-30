@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:59:00 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/27 11:49:55 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/06/30 21:46:54 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ void	sigint_handler(int signo)
 void	heredoc_sigint(int signo)
 {
 	(void)signo;
-	g_signal = SIGINT;
+//	g_signal = SIGINT;
 	write(1, "\n", 1);
+	exit(130);
 }
 
 // Handler pr SIGQUIT (Ctrl+\)
