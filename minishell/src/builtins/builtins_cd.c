@@ -6,7 +6,7 @@
 /*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 10:31:50 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/27 11:30:37 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/06/30 12:41:59 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	builtin_cd(char **cmd)
 {
 	t_shell	*shell;
 	char	*target;
-
+	
 	shell = get_shell_context(NULL);
 	if (cmd[1] && cmd[2])
 	{
@@ -32,6 +32,16 @@ int	builtin_cd(char **cmd)
 			ft_putendl_fd("cd: HOME not set", 2);
 			return (1);
 		}
+	}
+	else if (ft_strcmp(cmd[1], "-") == 0)
+	{
+		target = getenv("OLDPWD");
+		if (!target)
+		{
+			ft_putendl_fd("cd : OLDPWD not set", 2);
+			return (1);
+		}
+		ft_putendl_fd(target, 1);
 	}
 	else
 		target = cmd[1];
