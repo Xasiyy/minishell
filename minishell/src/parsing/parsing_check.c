@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_check.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:32:43 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/27 17:39:49 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/06/30 13:21:03 by abollia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ static int	check_pipes_and_redirs(char **tokens)
 	i = 0;
 	while (tokens[i])
 	{
-		if (ft_strcmp(tokens[i], "|") == 0)
+		if (!ft_strncmp(tokens[i], "|\0", 2))
 		{
-			if ((tokens[i + 1] && ft_strcmp(tokens[i + 1], "|") == 0))
+			if ((tokens[i + 1] && !ft_strncmp(tokens[i + 1], "|\0", 2)))
 			{
 				print_unexpected(tokens[i + 1]);
 				return (1);
@@ -89,6 +89,8 @@ int	syntax_error(char **tokens)
 	if (is_invalid_end(tokens))
 		return (1);
 	if (check_pipes_and_redirs(tokens))
+		return (1);
+	if (check_tokens(tokens))
 		return (1);
 	return (0);
 }

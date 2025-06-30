@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_export.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:23:34 by ncullu            #+#    #+#             */
-/*   Updated: 2025/05/21 13:36:34 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/06/27 16:10:43 by abollia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ int	export_process_args(char **cmd, t_env *env_struct)
 		else if (equal && equal != cmd[i])
 			err = handle_export_with_value(env_struct, cmd[i], equal);
 		else if (!equal && !env_var_exists(env_struct->envp, cmd[i]))
-			add_env_entry(&env_struct->envp, cmd[i], "");
+		{
+			if (add_env_entry(&env_struct->envp, cmd[i], ""))
+				err = 1;
+		}
 		i++;
 	}
 	return (err);
