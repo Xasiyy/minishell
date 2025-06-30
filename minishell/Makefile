@@ -2,7 +2,7 @@
 
 NAME        = minishell
 CC          = gcc
-CFLAGS = -Wall -Wextra -Werror -Iinclude -Ilibft -Iget_next_line -O0 -g
+CFLAGS      = -Wall -Wextra -Werror -Iinclude -Ilibft -Iget_next_line -O0 -g
 BIN_DIR     = bin
 OBJ_DIR     = obj
 SRC_DIR     = src
@@ -83,29 +83,53 @@ all: $(BIN_DIR)/$(NAME)
 
 $(BIN_DIR)/$(NAME): $(LIBFT) $(OBJS) $(FT_PRINTF_OBJS) $(GNL_OBJS)
 	@mkdir -p $(BIN_DIR)
-	$(CC) $(CFLAGS) $(OBJS) $(FT_PRINTF_OBJS) $(GNL_OBJS) -lreadline $(LIBFT) -o $@
+	@printf "$(GREEN)[Linking]$(RESET) Creating executable: $(NAME)\n"
+	@$(CC) $(CFLAGS) $(OBJS) $(FT_PRINTF_OBJS) $(GNL_OBJS) -lreadline $(LIBFT) -o $@
+	@printf "$(GREEN)[Success]$(RESET) Build complete 🎉\n"
+
 # ---------- Libft ------------------------------------------------------------- #
 $(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
+	@printf "$(BLUE)[Libft]$(RESET) Compiling libft...\n"
+	@$(MAKE) -sC $(LIBFT_DIR)
 
 # ---------- Sources minishell ------------------------------------------------- #
+# Couleurs
+GREEN := \033[0;32m
+BLUE := \033[0;34m
+RESET := \033[0m
+
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 # ---------- Sources ft_printf ------------------------------------------------- #
+
 $(OBJ_DIR)/$(FT_PRINTF_DIR)/%.o: $(FT_PRINTF_DIR)/%.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR)/$(GNL_DIR)/%.o: $(GNL_DIR)/%.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 # ================================ UTILITAIRES ================================= #
 
 vg: $(BIN_DIR)/$(NAME)
 	$(VALGRIND) ./$(BIN_DIR)/$(NAME)
+       $(BIN_DIR)/$(NAME): $(LIBFT) $(OBJS) $(FT_PRINTF_OBJS) $(GNL_OBJS)
+	@mkdir -p $(BIN_DIR)
+	@printf "$(GREEN)[Linking]$(RESET) Creating executable: $(NAME)\n"
+	@$(CC) $(CFLAGS) $(OBJS) $(FT_PRINTF_OBJS) $(GNL_OBJS) -lreadline $(LIBFT) -o $@
+
+	@printf "$(BLUE)[Progress]$(RESET) "
+	@i=0; while [ $$i -le 20 ]; do \
+		printf "#"; \
+		sleep 0.05; \
+		i=`expr $$i + 1`; \
+	done; \
+	printf " 100%%\n"
+	@printf "$(GREEN)[Success]$(RESET) Build complete 🎉\n"
+
 
 clean:
 	rm -rf $(OBJ_DIR)
