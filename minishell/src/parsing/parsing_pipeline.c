@@ -6,7 +6,7 @@
 /*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 17:39:13 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/06/27 14:16:42 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/06/30 13:35:26 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,11 @@ t_pipeline	*parse_pipeline(char *input, t_shell *shell)
 	parts = split_pipeline_tokens(input);
 	if (!parts)
 		return (NULL);
+	if (check_tokens(parts))
+	{
+		free_split(parts);
+		return (NULL);
+	}
 	nb_parts = count_pipeline_parts(input);
 	cmds = malloc(sizeof(t_command *) * (nb_parts + 1));
 	if (!cmds)

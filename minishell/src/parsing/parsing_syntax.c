@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_syntax.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 17:40:25 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/06/17 15:36:16 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/06/30 13:48:12 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,18 @@
 
 int	is_pipe(char *tok)
 {
-	return (tok && tok[0] == '|' && tok[1] == '\0');
+	int	i;
+
+	if (!tok)
+		return (0);
+	if (tok[0] != '|')
+		return (0);
+	i = 0;
+	while (tok[i] == '|')
+		i++;
+	if (tok[i] == '\0' && i == 1)
+		return (1);
+	return (0);
 }
 
 void	print_unexpected(char *tok)
@@ -40,7 +51,7 @@ int	expect_filename(char **t, int *i)
 }
 
 // Vérifie les erreurs spécifiques aux pipes
-static int	check_pipe_block(char **t, int *i)
+/* static int	check_pipe_block(char **t, int *i)
 {
 	if (t[*i + 1] && is_pipe(t[*i + 1]))
 	{
@@ -59,7 +70,7 @@ static int	check_pipe_block(char **t, int *i)
 		return (1);
 	}
 	return (0);
-}
+} */
 
 // Parcourt tous les tokens et vérifie la syntaxe
 int	check_tokens(char **t)
@@ -71,10 +82,15 @@ int	check_tokens(char **t)
 	{
 		if (is_pipe(t[i]))
 		{
-			if (check_pipe_block(t, &i))
-				return (1);
+			if (i == 0 || t[i + 1] == NULL)
+				return (print_unexpected(t[i]), 1);
+			if (is_pipe(t[i + 1]))
+				return (print_unexpected(t[i + 1]), 1);
+			i++;
 			continue ;
 		}
+		if (t[i][0] == '\0')
+			return (print_unexpected(""), 1);
 		if (is_redirection(t[i]))
 		{
 			if (expect_filename(t, &i))
