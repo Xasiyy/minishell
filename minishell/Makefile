@@ -71,7 +71,7 @@ SRCS = builtins/builtins_cd.c \
        shell_main/shell_main.c \
        signal/signals.c \
        utils/file_utils.c \
-       utils/ft_strdup_array.c
+       utils/ft_strdup_array.c 
 
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
 

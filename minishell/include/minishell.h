@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 18:00:52 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/27 11:49:33 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/06/30 12:51:31 by abollia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -298,6 +298,7 @@ int								*init_quote_flags(char **tokens);
 char							**parsing_token_setup(char *input);
 void							expand_all_tokens(char **tokens,
 									t_shell *shell);
+char							*lexer_treatline(char *s);	
 
 // parsing_field_splitting.c
 void							discard_empty_words(char **tok, int *quote);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_pipeline.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 11:44:07 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/05/27 13:42:04 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/06/30 12:45:32 by abollia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,6 @@ int	count_pipeline_parts(const char *str)
 		{
 			if (str[i] == '|')
 				count++;
-			else if (str[i] == '&' && str[i + 1] == '&')
-			{
-				count++;
-				i++;
-			}
 		}
 		i++;
 	}

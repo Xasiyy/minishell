@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_syntax.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 17:40:25 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/06/17 15:36:16 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/06/30 13:24:39 by abollia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 int	is_pipe(char *tok)
 {
-	return (tok && tok[0] == '|' && tok[1] == '\0');
+	if (tok && tok[0] == '|' && tok[1] == '\0')
+		return (1);
+	return (0);
 }
 
 void	print_unexpected(char *tok)
