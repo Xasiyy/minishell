@@ -6,7 +6,7 @@
 /*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 17:40:25 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/06/30 13:48:12 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/06/30 15:01:48 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	expect_filename(char **t, int *i)
 
 	(*i)++;
 	next = t[*i];
-	if (!next || is_special(next))
+	if (!next || (is_special(next) && ft_strcmp(t[*i - 1], "<<") != 0))
 	{
 		print_unexpected(next);
 		return (1);
@@ -51,7 +51,7 @@ int	expect_filename(char **t, int *i)
 }
 
 // Vérifie les erreurs spécifiques aux pipes
-/* static int	check_pipe_block(char **t, int *i)
+static int	check_pipe_block(char **t, int *i)
 {
 	if (t[*i + 1] && is_pipe(t[*i + 1]))
 	{
@@ -70,34 +70,38 @@ int	expect_filename(char **t, int *i)
 		return (1);
 	}
 	return (0);
-} */
+}
 
 // Parcourt tous les tokens et vérifie la syntaxe
 int	check_tokens(char **t)
 {
 	int	i;
 
+ 	if (is_pipe(t[0]))
+		return (print_unexpected(t[0]), 1);
 	i = 0;
-	while (t[i])
+	while (t[++i])
 	{
-		if (is_pipe(t[i]))
-		{
-			if (i == 0 || t[i + 1] == NULL)
-				return (print_unexpected(t[i]), 1);
-			if (is_pipe(t[i + 1]))
-				return (print_unexpected(t[i + 1]), 1);
-			i++;
-			continue ;
-		}
 		if (t[i][0] == '\0')
 			return (print_unexpected(""), 1);
-		if (is_redirection(t[i]))
+		if (is_pipe(t[i]))
 		{
-			if (expect_filename(t, &i))
-				return (1);
-			continue ;
+			if (is_pipe(t[i]))
+			{
+				if (t[i + 1] == NULL)	
+					return (print_unexpected(t[i]), 1);
+				if (check_pipe_block(t, &i))
+					return (1);
+				continue;
+			}
+			i++;
+			if (is_redirection(t[i]))
+			{
+				if (expect_filename(t, &i))
+					return (1);
+				continue ;
+			}
 		}
-		i++;
 	}
 	return (0);
 }
