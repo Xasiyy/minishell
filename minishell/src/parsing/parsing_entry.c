@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_entry.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:54:45 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/27 14:12:50 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/06/27 18:07:54 by abollia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ t_command	*parsing(char *input, t_shell *shell)
 		return (NULL);
 	quote_flags = init_quote_flags(tokens);
 	if (!quote_flags)
-	{
-		free_split(tokens);
-		return (NULL);
-	}
+		return (free_split(tokens), NULL);
 	cmd = build_command(tokens, quote_flags, shell);
 	free_split(tokens);
 	free(quote_flags);

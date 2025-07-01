@@ -300,6 +300,7 @@ int								*init_quote_flags(char **tokens);
 char							**parsing_token_setup(char *input);
 void							expand_all_tokens(char **tokens,
 									t_shell *shell);
+char							*lexer_treatline(char *s);	
 
 // parsing_field_splitting.c
 void							discard_empty_words(char **tok, int *quote);

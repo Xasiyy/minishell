@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:55:41 by ncullu            #+#    #+#             */
 /*   Updated: 2025/06/30 13:18:49 by asdiallo         ###   ########.fr       */

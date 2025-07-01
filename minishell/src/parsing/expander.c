@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:40:04 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/27 15:20:09 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/06/27 17:43:16 by abollia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ static void	handle_dollar(char *str, int *i, int quote __attribute__((unused)),
 	{
 		expanded = expand_and_append_var(str, i, sh);
 		*res = append_expanded_to_result(*res, expanded);
-		//free(expanded);
+		// if (expanded)
+		// 	free(expanded);
 	}
 }
 
