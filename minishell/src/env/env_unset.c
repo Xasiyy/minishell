@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_unset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:43:36 by ncullu            #+#    #+#             */
-/*   Updated: 2025/05/27 13:10:41 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/07/01 16:07:19 by abollia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static char	**create_env_without_key(char **env, const char *key)
 		return (NULL);
 	while (env[i])
 	{
-		if (ft_strncmp(env[i], key, key_len) == 0 && env[i][key_len] == '=')
+		if (ft_strncmp(env[i], key, key_len) == 0)
 			free(env[i++]);
 		else
 			new_env[j++] = env[i++];
@@ -54,8 +54,7 @@ int	unset_env_var(char ***env, const char *key)
 	i = 0;
 	while ((*env)[i])
 	{
-		if (ft_strncmp((*env)[i], key, key_len) == 0
-			&& (*env)[i][key_len] == '=')
+		if (ft_strncmp((*env)[i], key, key_len) == 0)
 		{
 			new_env = create_env_without_key(*env, key);
 			if (!new_env)
