@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_quotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 14:28:11 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/06/30 13:02:35 by abollia          ###   ########.fr       */
+/*   Updated: 2025/07/02 21:21:49 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ char	*extract_token(const char *input, int *i)
 	char	quote;
 	char	*token;
 
+	if (input[*i] == '<' || input[*i] == '>')
+	{
+		start = *i;
+		(*i)++;
+		if (input[*i] == input[start])
+			(*i)++;
+		return (ft_substr(input, start, *i - start));
+	}
 	start = *i;
 	quote = 0;
 	while (input[*i])
@@ -50,7 +58,7 @@ char	*extract_token(const char *input, int *i)
 			(*i)++;
 			quote = 0;
 		}
-		else if (!quote && is_space(input[*i]))
+		else if (!quote && (is_space(input[*i]) || input[*i] == '<' || input[*i] == '>'))
 			break ;
 		else
 			(*i)++;

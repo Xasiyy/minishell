@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:32:45 by asdiallo          #+#    #+#             */
-/*   Updated: 2024/10/25 12:20:58 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/02 21:27:24 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,30 +26,3 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	ft_memset(ptr, 0, total_size);
 	return (ptr);
 }
-
-/* void	*ft_memset(void *dest, int c, size_t count)
-{
-	unsigned char	*p;
-	size_t			i;
-
-	i = 0;
-	p = (unsigned char *)dest;
-	while (i < count)
-	{
-		p[i] = (unsigned int)c;
-		i++;
-	}
-	return (dest);
-} */
-/* int main ()
-{
-    size_t nmemb = 5;
-    size_t i = 0;
-    int *tab = (int *)ft_calloc(nmemb, sizeof(int));
-
-    while (i < nmemb)
-    {
-        printf("tab[%zu] = %d\n", i, tab[i]);
-        i++;
-    }
-} */

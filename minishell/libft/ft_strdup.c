@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 12:07:06 by asdiallo          #+#    #+#             */
-/*   Updated: 2024/10/19 14:11:59 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/02 21:32:23 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,3 @@ char	*ft_strdup(const char *src)
 	ft_strcpy(str, src);
 	return (str);
 }
-
-/* int	main ()
-{
-	printf("%s",ft_strdup("hello\n"));
-} */

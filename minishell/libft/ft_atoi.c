@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:05:51 by asdiallo          #+#    #+#             */
-/*   Updated: 2024/10/16 17:17:54 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/02 21:31:02 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,3 @@ int	ft_atoi(const char *str)
 	}
 	return ((int)(s * r));
 }
-
-/* int main() {
-    // Tests de la fonction
-    printf("%d\n", ft_atoi("   -42"));       // Affiche: -42
-    printf("%d\n", ft_atoi("   42"));        // Affiche: 42
-    printf("%d\n", ft_atoi("42"));            // Affiche: 42
-    printf("%d\n", ft_atoi("  +42abc"));      // Affiche: 42
-    printf("%d\n", ft_atoi("abc42"));         // Affiche: 0
-    printf("%d\n", ft_atoi(""));              // Affiche: 0
-    printf("%d\n", ft_atoi("   + 42"));       // Affiche: 0
-    printf("%d\n", ft_atoi("   -42xyz"));     // Affiche: -42
-    printf("%d\n", ft_atoi("  -   42"));      // Affiche: 0
-    return 0;
-} */

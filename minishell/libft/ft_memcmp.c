@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 11:51:30 by asdiallo          #+#    #+#             */
-/*   Updated: 2024/10/16 17:06:03 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/02 21:31:44 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,3 @@ int	ft_memcmp(const void *ptr1, const void *ptr2, size_t size)
 	}
 	return (0);
 }
-
-/* int main() {
-	char str1[] = "abcdef";
-	char str2[] = "abcdez";
-	
-	int result = ft_memcmp(str1, str2, 6);
-	
-	if (result == 0)
-		printf("Les chaînes sont égales.\n");
-	else if (result < 0)
-		printf("str1 est inférieur à str2.\n");
-	else
-		printf("str1 est supérieur à str2.\n");
-	
-	return 0;
-} */

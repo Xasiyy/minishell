@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:34:31 by asdiallo          #+#    #+#             */
-/*   Updated: 2024/10/22 16:19:12 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/02 21:32:26 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,3 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 		i++;
 	}
 }
-
-/*  void test(unsigned int i, char *c)
-{
-	if (*c >= 'a' && *c <= 'z')
-		*c -= 32;
-}
-int main ()
-{
-	char str[] = "hello";
-	ft_striteri(str, test);
-	printf("%s\n", str);
-	return (0);
-}  */

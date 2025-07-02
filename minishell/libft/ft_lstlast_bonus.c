@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 21:29:46 by asdiallo          #+#    #+#             */
-/*   Updated: 2024/10/23 22:07:15 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/02 21:31:33 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,3 @@ t_list	*ft_lstlast(t_list *lst)
 		lst = lst -> next;
 	return (lst);
 }
-/* int main ()
-{
-	t_list *liste = NULL;
-
-    liste = ft_lstnew("node 1");
-    liste->next = ft_lstnew("node 2");
-    liste->next->next = ft_lstnew("node 3");
-
-	t_list *lst = ft_lstlast(liste);
-    printf("%s\n", (char *)lst->content);
-
-    return 0;
-} */

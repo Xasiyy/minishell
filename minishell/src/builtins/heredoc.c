@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 20:35:41 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/06/30 21:47:40 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/02 21:25:50 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ char	*handle_heredoc(char *delimiter)
 			line = readline("> ");
 			if(!line)
 			{
+				ft_eprintf("heredoc delimited by end of the file (wanted `EOF')\n");
 				safe_close(&fd);
 				exit (0);
 			}

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 20:57:37 by asdiallo          #+#    #+#             */
-/*   Updated: 2024/10/23 21:28:54 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/02 21:31:40 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,3 @@ int	ft_lstsize(t_list *lst)
 	}
 	return (count);
 }
-/* int main() {
-    t_list *liste = NULL;
-
-    ft_lstadd_front(&liste, ft_lstnew("Node 1"));
-    ft_lstadd_front(&liste, ft_lstnew("Node 2"));
-    ft_lstadd_front(&liste, ft_lstnew("Node 3"));
-
-    int count = ft_lstsize(liste);
-    printf("%d\n", count);
-
-    return 0;
-} */

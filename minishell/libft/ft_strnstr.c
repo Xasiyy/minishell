@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 15:55:14 by asdiallo          #+#    #+#             */
-/*   Updated: 2024/10/24 17:55:55 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/02 21:32:46 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,3 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	}
 	return (NULL);
 }
-
-/* int main(void)
-{
-	const char *big = "hey";
-	void *little = "";
-
-	char *result = ft_strnstr(big, little, 15);
-	if (result)
-		printf("Trouvé : %s\n", result);
-	else
-		printf("NULL\n");
-
-	return 0;
-} */

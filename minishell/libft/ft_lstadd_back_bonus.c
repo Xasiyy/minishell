@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 22:13:12 by asdiallo          #+#    #+#             */
-/*   Updated: 2024/10/23 22:45:30 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/02 21:31:24 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,3 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		liste -> next = new;
 	}
 }
-/* int main ()
-{
-	t_list *liste = NULL;
-
-	ft_lstadd_back(&liste, ft_lstnew("Node 1"));
-    ft_lstadd_back(&liste, ft_lstnew("Node 2"));
-    ft_lstadd_back(&liste, ft_lstnew("Node 3"));
-	
-	t_list *ptr = liste;
-	while (ptr)
-	{
-		printf("%s -> ", (char *)ptr->content);
-		ptr = ptr->next;
-	}
-	return (0);
-} */

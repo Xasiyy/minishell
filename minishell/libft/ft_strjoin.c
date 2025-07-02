@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:52:26 by asdiallo          #+#    #+#             */
-/*   Updated: 2024/10/19 14:15:15 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/02 21:32:30 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,32 +29,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_strlcat(str, s2, len1 + len2 + 1);
 	return (str);
 }
-
-/* int main(void)
-{
-	char *s1 = "Hello, ";
-	char *s2 = "World!";
-	char *result;
-
-	// Cas 1 : Cas normal
-	result = ft_strjoin(s1, s2);
-	printf("Resultat (s1 + s2): %s\n", result);
-	free(result); // Libérer la mémoire allouée
-
-	// Cas 2 : s1 est vide
-	result = ft_strjoin("", s2);
-	printf("Resultat (s1 vide + s2): %s\n", result);
-	free(result);
-
-	// Cas 3 : s2 est vide
-	result = ft_strjoin(s1, "");
-	printf("Resultat (s1 + s2 vide): %s\n", result);
-	free(result);
-
-	// Cas 4 : Les deux chaînes sont vides
-	result = ft_strjoin("", "");
-	printf("Resultat (s1 vide + s2 vide): %s\n", result);
-	free(result);
-
-	return 0;
-} */

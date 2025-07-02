@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_pipeline.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 17:39:13 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/06/30 14:28:58 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/02 21:36:41 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void	fill_commands(t_command **cmds, char **parts, t_shell *shell)
 	cmds[i] = NULL;
 }
 
+
 // Analyse une ligne cmd contenant un pipeline et construit structure
 t_pipeline	*parse_pipeline(char *input, t_shell *shell)
 {
@@ -46,7 +47,9 @@ t_pipeline	*parse_pipeline(char *input, t_shell *shell)
 
 	parts = split_pipeline_tokens(input);
 	if (!parts)
+	{
 		return (NULL);
+	}
 	if (check_tokens(parts))
 	{
 		free_split(parts);

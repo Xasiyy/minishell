@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 22:28:45 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/04/09 13:40:31 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/02 21:32:08 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,16 +97,3 @@ char	**ft_split(char const *s, char c)
 	r[j] = NULL;
 	return (r);
 }
-
-/* int main ()
-{
-	char *str = "hello world";
-	char **split = ft_split(str, ' ');
-	size_t i = 0;
-	while (split[i] != NULL)
-	{
-		printf("%zu , %s\n", i, split[i]);
-		i++;
-	}
-	free(split);
-} */

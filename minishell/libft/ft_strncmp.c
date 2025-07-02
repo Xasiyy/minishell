@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 09:41:46 by asdiallo          #+#    #+#             */
-/*   Updated: 2024/10/16 17:44:19 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/02 21:32:43 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,3 @@ int	ft_strncmp(const char *s1, const char *s2, unsigned int n)
 	}
 	return (0);
 }
-
-/* int main ()
-{
-    int n = 3; 
-    char s1[] = "ABC";
-    char s2[] = "AB";
-    ft_strncmp(s1, s2, n);
-    printf("%d", ft_strncmp(s1, s2, n));
-} */

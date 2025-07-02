@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_redirection.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 15:28:04 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/06/24 10:49:29 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/02 21:38:03 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,7 @@ void	handle_redirection(char **tokens, int *i, t_command *cmd)
 	t_shell			*shell;
 	t_redir *redir = cmd->redirections;
 	while (redir)
-	{
-		fprintf(stderr, "[debug] redir type = %d, filename ptr = %p, val = %s\n",
-			redir->type, (void *)redir->filename,
-			redir->filename ? redir->filename : "NULL");
 		redir = redir->next;
-	}
 	shell = get_shell_context(NULL); 
 	type = get_redirection_type(tokens[*i]);
 	if ((int)type == -1)

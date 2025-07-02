@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 08:36:22 by asdiallo          #+#    #+#             */
-/*   Updated: 2024/10/25 18:07:25 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/02 21:32:34 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,3 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	}
 	return (len_dest + len_src);
 }
-
-/* int main ()
-{
-	char dest[14] = "a";
-	const char *src = " lorem ipsum dolor sit amet";
-	size_t size = 15; 
-	ft_strlcat(dest, src, size);
-	printf("%s\n", dest);
-} */

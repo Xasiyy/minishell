@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 09:33:22 by asdiallo          #+#    #+#             */
-/*   Updated: 2024/10/19 11:21:51 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/02 21:29:14 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,3 @@ char	*ft_strrchr(const char *str, int searchedChar)
 		return ((char *)&str[i]);
 	return (NULL);
 }
-
-/* int main() {
-	const char *str = "bonjour";
-	char ch = 'b';
-
-	char *result = ft_strrchr(str, ch);
-
-	if (result != NULL) 
-		printf(" '%c' trouvé à la position : %ld\n", ch, result - str);
-	 else
-		printf("Le caractère '%c' n'a pas été trouvé dans la chaîne.\n", ch);
-	return 0;
-} */
