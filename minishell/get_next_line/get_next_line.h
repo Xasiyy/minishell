@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 22:34:05 by asdiallo          #+#    #+#             */
-/*   Updated: 2024/11/15 17:00:09 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/03 15:19:24 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10
+# endif
+
+# ifndef MAX_FD
+#  define MAX_FD 1024
 # endif
 
 # include <fcntl.h>

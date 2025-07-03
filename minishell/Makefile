@@ -76,7 +76,7 @@ SRCS = builtins/builtins_cd.c \
 
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
 
-VALGRIND = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes --suppressions=minishell_tester/valgrind.supp #--trace-children=yes
+VALGRIND = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes --suppressions=valgrind.supp #--trace-children=yes
 
 # ================================ COMPILATION ================================= #
 

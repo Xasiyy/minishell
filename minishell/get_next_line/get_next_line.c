@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 22:37:35 by asdiallo          #+#    #+#             */
-/*   Updated: 2024/11/18 09:42:24 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/03 15:18:50 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
 
 ssize_t	fill_buffer(int fd, char *buffer, char **result)
 {
@@ -101,12 +102,12 @@ char	*read_line(int fd, char *buffer, char *result)
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[BUFFER_SIZE + 1];
+	static char	buffer[MAX_FD][BUFFER_SIZE + 1];
 	char		*result;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	result = NULL;
-	result = read_line(fd, buffer, result);
+	result = read_line(fd, buffer[fd], result);
 	return (result);
 }

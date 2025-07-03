@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 18:00:52 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/28 17:40:33 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/03 13:02:28 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -395,6 +395,7 @@ void							minishell(t_files files, char *input,
 
 // signal
 // signals.c
+void							setup_interactive_signals(void);
 void							sigint_handler(int signo);
 void							sigqquit_handler(int signo);
 void							init_signals(void);
