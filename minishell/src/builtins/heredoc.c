@@ -6,7 +6,7 @@
 /*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 20:35:41 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/07/03 15:26:23 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/04 16:39:37 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ char	*handle_heredoc(char *delimiter)
 		}
 	}
 	safe_close(&fd);
+	signal(SIGINT, SIG_IGN);
 	waitpid(pid, &status, 0);
 	signal(SIGINT, sigint_handler);
 	g_signal = 0;
@@ -100,9 +101,6 @@ char	*handle_heredoc(char *delimiter)
 		unlink(template);
 		//safe_close(&fd);
 		free(template);
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
 		return (NULL);
 	}
 	char *result = ft_strdup(template);

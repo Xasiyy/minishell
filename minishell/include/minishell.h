@@ -6,7 +6,7 @@
 /*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 18:00:52 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/03 13:02:28 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/03 22:53:32 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -392,7 +392,7 @@ void							exec_cmds(t_files files, int pipe_fd[2],
 									t_command *cmd, char **env);
 void							minishell(t_files files, char *input,
 									char **env);
-
+void							reset_readline(void);
 // signal
 // signals.c
 void							setup_interactive_signals(void);

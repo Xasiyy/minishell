@@ -6,15 +6,15 @@
 /*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:55:41 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/03 15:48:48 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/04 16:56:25 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	reste_readline(void)
+void	reset_readline(void)
 {
-	rl_reset_line_state();
+	write(1, "\n", 1);
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
@@ -31,12 +31,12 @@ void	start_shell_loop(t_shell *shell)
 		//signal(SIGINT, sigint_handler);
 		setup_interactive_signals();
 		line = readline("minishell$ ");
-		if (!line && g_signal == SIGINT)
+/* 		if (!line && g_signal == SIGINT)
 		{
 			shell->last_exit_status = 130;
 			g_signal = 0;
-			continue ;
-		}
+			exit(0) ;
+		} */
 		if (!line)
 		{
 			printf("exit\n");
