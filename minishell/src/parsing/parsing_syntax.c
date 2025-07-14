@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_syntax.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 17:40:25 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/07/02 21:28:22 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/14 11:48:42 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	expect_filename(char **t, int *i)
 {
 	char	*next;
 
+	if (!t)
+		return (1);
 	(*i)++;
 	next = t[*i];
 	if (!next)

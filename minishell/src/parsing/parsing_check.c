@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_check.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:32:43 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/02 21:36:24 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/14 11:51:21 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ static int	is_invalid_end(char **tokens)
 	int	i;
 	int	len;
 
+	if (!tokens || !*tokens)
+		return (1);
 	i = 0;
 	while (tokens[i + 1])
 		i++;
