@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_redirection.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 15:28:04 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/07/02 21:38:03 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/14 19:47:59 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ void	add_redirection(t_command *cmd, t_redir_type type, char *filename)
 		new->filename = tmpfile;
 	}
 	else
-		new->filename = filename;
+	{
+		new->filename = ft_strdup(filename);
+		free(filename);
+	}
 	new->type = type;
 	new->next = NULL;
 	if (!cmd->redirections)
@@ -50,6 +53,7 @@ void	add_redirection(t_command *cmd, t_redir_type type, char *filename)
 		tmp->next = new;
 	}
 }
+
 void	expand_all_tokens_with_quotes(char **tokens, int *quote_flags,
 		t_shell *shell)
 {
@@ -67,7 +71,7 @@ void	expand_all_tokens_with_quotes(char **tokens, int *quote_flags,
 			i++;
 			continue ;
 		}
-		quote_flags[i] = segments->quote; // on garde le premier quote
+		quote_flags[i] = segments->quote;
 		expanded = build_expanded_string(segments, shell);
 		free(tokens[i]);
 		tokens[i] = expanded;

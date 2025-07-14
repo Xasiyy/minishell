@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:39:47 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/17 16:46:24 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/07/14 19:33:52 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ void	free_redirections(t_redir *redir)
 	while (redir)
 	{
 		tmp = redir->next;
-		if (redir->filename)
-			free(redir->filename);
+		free(redir->filename);
 		free(redir);
 		redir = tmp;
 	}

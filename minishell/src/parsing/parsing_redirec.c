@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_redirec.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 16:44:12 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/02 21:37:04 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/14 19:39:50 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,30 +58,19 @@ static int	handle_redir(char **tok, int *i, t_command *cmd)
 {
 	char	*filename;
 	char	*raw = tok[*i];
-	int		op_len = 0;
 
-	if (raw[0] == '>' && raw[1] == '>')
-		op_len = 2;
-	else if (raw[0] == '<' && raw[1] == '<')
-		op_len = 2;
-	else if (raw[0] == '>' || raw[0] == '<')
-		op_len = 1;
-	else
-		return (syntax_error(&raw), 1);
-	if (raw[op_len] != '\0')
-		filename = ft_strdup(raw + op_len);
-	else
+	if (!tok[*i + 1] || is_redirection(tok[*i + 1]))
 	{
-		if (!tok[*i + 1] || is_redirection(tok[*i + 1]))
-		{
-			syntax_error(&tok[*i + 1]);
-			return (1);
-		}
-		filename = ft_strdup(tok[*i + 1]);
-		(*i)++;
-	}
-	if (!filename)
+		syntax_error(&tok[*i + 1]);
 		return (1);
+	}
+	filename = ft_strdup(tok[*i + 1]);
+	(*i)++;
+	if (!filename)
+	{
+		printf("LEAK? filename: %s\n", filename);
+		return (1);
+	}
 	add_redirection(cmd, get_redirection_type(raw), filename);
 	(*i)++;
 	return (0);
