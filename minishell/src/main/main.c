@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:55:41 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/04 16:56:25 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/15 09:59:18 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	start_shell_loop(t_shell *shell)
 		}
 		free_split(tmp);
 		handle_line(line, shell);
+		printf("free all loop\n");
 		free_all(shell);
 		free(line);
 	}
@@ -75,6 +76,7 @@ int	main(int argc, char **argv, char **envp)
 	shell->main_pid = getpid();
 	//setup_interactive_signals();
 	start_shell_loop(shell);
+	printf("free_shell main\n");
 	free_shell(shell, 1);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_helpers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:25:48 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/28 17:42:27 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/16 11:43:12 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,18 @@ void	child_process(t_command *cmd, char **env, int *exit_status)
 {
 	t_shell	*shell;
 
-	(void)env;
 	shell = get_shell_context(NULL);
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 	if (is_builtin(cmd->args))
+	{
 		execute_builtin(cmd->args, exit_status);
+		free_shell(shell, 1);
+		exit(*exit_status);
+	}
 	else
-		execute_external(cmd, shell->env->envp, exit_status);
+		execute_child(cmd, env);
+		//execute_external(cmd, shell->env->envp, exit_status);
 	free_shell(shell, 1);
 	exit(*exit_status);
 }
