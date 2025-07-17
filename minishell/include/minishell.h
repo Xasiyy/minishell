@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 18:00:52 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/03 22:53:32 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/16 14:10:43 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,6 +253,8 @@ void							free_command_list(t_command *cmd_list);
 void							free_command(t_command *cmd);
 void							free_env(t_env *env);
 void							free_segments(t_segment *seg);
+void							free_redirections(t_redir *redir);
+void							free_pipeline(t_pipeline *pipeline);
 
 // memory_utils.c
 void							free_split(char **split);
@@ -312,7 +314,7 @@ t_pipeline						*allocate_pipeline(char **parts,
 
 // parsing_redirec.c
 int								is_quoted(const char *s);
-void							parse_redirections(char **tok, int *flags,
+int								parse_redirections(char **tok, int *flags,
 									t_command *cmd);
 
 // parsing_redirection.c

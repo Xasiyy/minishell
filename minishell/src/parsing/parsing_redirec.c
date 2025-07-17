@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_redirec.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 16:44:12 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/14 19:39:50 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/16 13:39:36 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,15 +101,19 @@ static int	fill_args(char **tok, int *flags, t_command *cmd)
 }
 
 // Parse les redirections et arguments dans les tokens pour remplir cmd
-void	parse_redirections(char **tok, int *flags, t_command *cmd)
+int	parse_redirections(char **tok, int *flags, t_command *cmd)
 {
 	int	count;
 
 	count = count_args(tok, flags);
 	cmd->args = ft_calloc(count + 1, sizeof(char *));
 	if (!cmd->args)
-		return ;
+		return (-1);
 	if (fill_args(tok, flags, cmd))
-		return ;
+	{
+		free(cmd->args);
+		cmd->args = NULL;
+		return (-1);
+	}
+	return (0);
 }
-

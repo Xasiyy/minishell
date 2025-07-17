@@ -6,7 +6,7 @@
 /*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 20:35:41 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/07/15 09:59:25 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/17 12:59:09 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,41 @@ char	*generate_tmp_filename(void)
 	return (filename);
 }
 
+int	loop_heredoc(int fd, char *delimiter)
+{
+	char	*line;
+
+	while (1)
+	{
+		write (1, "> ", 2);
+		line = get_next_line(0);
+		if (!line)
+		{
+			ft_eprintf("heredoc delimited by end of the file (wanted `EOF')\n");
+			return (1);
+		}
+		if (ft_strncmp(line, delimiter, ft_strlen(delimiter)) == 0 && line[ft_strlen(delimiter)] == '\n')
+		{
+			free(line);
+			break;
+		}
+		write(fd, line, ft_strlen(line));
+		free(line);
+	}
+	return (0);
+}
+
 char	*handle_heredoc(char *delimiter)
 {
 	char	*template = generate_tmp_filename();
 	int		fd;
-	char	*line;
 	int		pid;
 	int		status;
+	char	*result;
 	
+	if (!template)
+		return (NULL);
 	fd = open(template, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	//fd = mkstemp(template);
 	if (fd == -1)
 		return (NULL);
 	pid = fork();
@@ -64,31 +89,16 @@ char	*handle_heredoc(char *delimiter)
 	{
 		safe_close(&fd);
 		unlink(template);
+		free(template);
 		return (NULL);
 	}
-	else if (pid == 0)
+	if (pid == 0)
 	{
 		signal(SIGINT, heredoc_sigint);
 		signal(SIGQUIT, SIG_IGN);
-		while (1)
-		{
-			write(1, "> ", 2);
-			line = get_next_line(0);
-			if(!line)
-			{
-				ft_eprintf("heredoc delimited by end of the file (wanted `EOF')\n");
-				safe_close(&fd);
-				exit (0);
-			}
-			if (ft_strncmp(line, delimiter, ft_strlen(delimiter)) == 0 && line[ft_strlen(delimiter)] == '\n')
-			{
-				free(line);
-				safe_close(&fd);
-				exit(0);
-			}
-			write(fd, line, ft_strlen(line));
-			free(line);
-		}
+		int ret = loop_heredoc(fd, delimiter);
+		safe_close(&fd);
+		exit(ret);
 	}
 	safe_close(&fd);
 	signal(SIGINT, SIG_IGN);
@@ -99,11 +109,10 @@ char	*handle_heredoc(char *delimiter)
 	{
 		g_signal = SIGINT;
 		unlink(template);
-		//safe_close(&fd);
 		free(template);
 		return (NULL);
 	}
-	char *result = ft_strdup(template);
+	result = ft_strdup(template);
 	free(template);
 	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:55:41 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/15 09:59:18 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/16 14:12:15 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,14 @@ void	reset_readline(void)
 // Boucle principale du shell : lit et exécute les commandes
 void	start_shell_loop(t_shell *shell)
 {
-	char	*line;
-	char	**tmp;
+	char		*line;
+	char		**tmp;
 
 	while (1)
 	{
 		//signal(SIGINT, sigint_handler);
 		setup_interactive_signals();
 		line = readline("minishell$ ");
-/* 		if (!line && g_signal == SIGINT)
-		{
-			shell->last_exit_status = 130;
-			g_signal = 0;
-			exit(0) ;
-		} */
 		if (!line)
 		{
 			printf("exit\n");
@@ -53,7 +47,6 @@ void	start_shell_loop(t_shell *shell)
 		}
 		free_split(tmp);
 		handle_line(line, shell);
-		printf("free all loop\n");
 		free_all(shell);
 		free(line);
 	}

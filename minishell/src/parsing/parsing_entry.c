@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_entry.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:54:45 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/02 21:36:28 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/16 14:26:28 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,17 @@ t_command	*build_command(char **tokens, int *quote_flags, t_shell *shell)
 	cmd = ft_calloc(1, sizeof(t_command));
 	if (!cmd)
 		return (NULL);
-	parse_redirections(tokens, quote_flags, cmd);
+	if (parse_redirections(tokens, quote_flags, cmd) == -1)
+	{
+		free_command(cmd);
+		return (NULL);
+	}
+	//parse_redirections(tokens, quote_flags, cmd);
+/* 	if (!cmd->args || !cmd->args[0])
+	{
+		free_command(cmd);
+		return (NULL);
+	} */
 	return (cmd);
 }
 

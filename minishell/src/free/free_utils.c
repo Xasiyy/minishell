@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:39:47 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/14 19:33:52 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/16 14:32:05 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,12 @@ void	free_command_list(t_command *cmd_list)
 void	free_redirections(t_redir *redir)
 {
 	t_redir	*tmp;
-
 	while (redir)
 	{
+		if (redir->filename)
+			fprintf(stderr, "about to free heredoc: %s\n", redir->filename);	
+		else
+			fprintf(stderr, "redir->filename is NULL\n");
 		tmp = redir->next;
 		free(redir->filename);
 		free(redir);
@@ -68,6 +71,7 @@ void	free_command(t_command *cmd)
 	free(cmd->outfile);
 	free(cmd->delimiter);
 	free(cmd->path);
+	fprintf(stderr, "FREE CMD\n");
 	free_redirections(cmd->redirections);
 	free(cmd);
 }
@@ -90,4 +94,12 @@ void	free_env(t_env *env)
 		free(env->envp);
 	}
 	free(env);
+}
+
+void	free_pipeline(t_pipeline *pipeline)
+{
+	if (!pipeline)
+		return ;
+	free_command_list(pipeline->commands);
+	free(pipeline);
 }

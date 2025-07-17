@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:51:42 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/03 15:49:20 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/16 14:13:00 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,15 @@ void	handle_line(char *line, t_shell *shell)
 	if (g_signal == SIGINT)
 	{
 		shell->last_exit_status = 130;
-		if (shell->pipeline)
-		{
-			free_command_list(shell->pipeline->commands);
-			free(shell->pipeline);
-			shell->pipeline = NULL;
-		}
+		free_command_list(shell->pipeline->commands);
+		free(shell->pipeline);
+		shell->pipeline = NULL;
 		return ;
 	}
 	signal(SIGINT, SIG_IGN);
 	execute_pipeline_or_single(shell);
-	if (shell->pipeline)
-	{
-		free_command_list(shell->pipeline->commands);
-		free(shell->pipeline);
-		shell->pipeline = NULL;
-	}
+	free_pipeline(shell->pipeline);
+	shell->pipeline = NULL;
 }
 
 // Vérifie les quotes et ajoute à l’historique

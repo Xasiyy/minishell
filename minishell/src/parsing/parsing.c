@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 18:27:50 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/17 15:40:41 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/07/16 14:23:24 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,42 +68,3 @@ char	*append_expanded_to_result(char *result, char *expanded)
 		return (result);
 	return (ft_join_free_both(result, expanded));
 }
-
-// Fait l expansion des variable ds une chaine (remplit $USER ou $?)
-/*char	*expand_variables(char *str, int quote_type, t_shell *shell)
-{
-	char	*result;
-	char	*expanded;
-	int		i;
-
-	i = 0;
-	result = ft_calloc(1, 1);
-	if (!result)
-		return (NULL);
-	while (str[i])
-	{
-		if (str[i] == '$' && quote_type != 1 && str[i + 1])
-		{
-			i++;
-			if (str[i] == '?')
-			{
-				char *exit_status = ft_itoa(shell->last_exit_status);
-				result = append_expanded_to_result(result, exit_status);
-				i++;
-			}
-			else if (!ft_isalpha(str[i]) && str[i] != '_')
-				result = append_char_to_result(result, '$');
-			else
-			{	
-				expanded = expand_and_append_var(str, &i, shell);
-				result = append_expanded_to_result(result, expanded);
-			}
-		}
-		else
-		{
-			result = append_char_to_result(result, str[i]);
-			i++;
-		}
-	}
-	return (result);
-}*/
