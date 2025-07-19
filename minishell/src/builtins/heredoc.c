@@ -3,16 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 20:35:41 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/07/17 12:59:09 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/19 21:57:13 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 char	*generate_tmp_filename(void)
+{
+	static int	id;
+	char		*num_str;
+	char		*result;
+
+	num_str = ft_itoa(getpid() + id++);
+	if (!num_str)
+		return (NULL);
+	result = ft_strjoin("/tmp/minishell_heredoc_", num_str);
+	free(num_str);
+	return (result);
+}
+
+/* char	*generate_tmp_filename(void)
 {
 	char	*base = "/tmp/minishell_heredoc_";
 	char	*filename;
@@ -45,7 +59,7 @@ char	*generate_tmp_filename(void)
 
 	filename[j] = '\0';
 	return (filename);
-}
+} */
 
 int	loop_heredoc(int fd, char *delimiter)
 {
@@ -60,10 +74,12 @@ int	loop_heredoc(int fd, char *delimiter)
 			ft_eprintf("heredoc delimited by end of the file (wanted `EOF')\n");
 			return (1);
 		}
-		if (ft_strncmp(line, delimiter, ft_strlen(delimiter)) == 0 && line[ft_strlen(delimiter)] == '\n')
+		if (ft_strncmp(line, delimiter,
+				ft_strlen(delimiter)) == 0
+			&& line[ft_strlen(delimiter)] == '\n')
 		{
 			free(line);
-			break;
+			break ;
 		}
 		write(fd, line, ft_strlen(line));
 		free(line);
@@ -71,32 +87,42 @@ int	loop_heredoc(int fd, char *delimiter)
 	return (0);
 }
 
-char	*handle_heredoc(char *delimiter)
+int	create_heredoc_file(char **template_name)
 {
-	char	*template = generate_tmp_filename();
+	char	*template;
 	int		fd;
-	int		pid;
-	int		status;
-	char	*result;
-	
+
+	template = generate_tmp_filename();
 	if (!template)
-		return (NULL);
+		return (-1);
 	fd = open(template, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd == -1)
-		return (NULL);
+	{
+		free(template);
+		return (-1);
+	}
+	*template_name = template;
+	return (fd);
+}
+
+int	execute_heredoc_child(int fd, char *delimiter, char *template)
+{
+	int	pid;
+	int	status;
+	int	ret;
+
 	pid = fork();
 	if (pid == -1)
 	{
 		safe_close(&fd);
 		unlink(template);
-		free(template);
-		return (NULL);
+		return (-1);
 	}
 	if (pid == 0)
 	{
 		signal(SIGINT, heredoc_sigint);
 		signal(SIGQUIT, SIG_IGN);
-		int ret = loop_heredoc(fd, delimiter);
+		ret = loop_heredoc(fd, delimiter);
 		safe_close(&fd);
 		exit(ret);
 	}
@@ -104,6 +130,22 @@ char	*handle_heredoc(char *delimiter)
 	signal(SIGINT, SIG_IGN);
 	waitpid(pid, &status, 0);
 	signal(SIGINT, sigint_handler);
+	return (status);
+}
+
+char	*handle_heredoc(char *delimiter)
+{
+	char	*template;
+	int		fd;
+	int		status;
+	char	*result;
+
+	fd = create_heredoc_file(&template);
+	if (fd == -1)
+		return (NULL);
+	status = execute_heredoc_child(fd, delimiter, template);
+	if (status == -1)
+		return (unlink(template), free(template), NULL);
 	g_signal = 0;
 	if (WIFSIGNALED(status) && WTERMSIG(status) == SIGINT)
 	{

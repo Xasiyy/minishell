@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:39:47 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/16 14:32:05 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/19 17:28:57 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,6 @@ void	free_redirections(t_redir *redir)
 	t_redir	*tmp;
 	while (redir)
 	{
-		if (redir->filename)
-			fprintf(stderr, "about to free heredoc: %s\n", redir->filename);	
-		else
-			fprintf(stderr, "redir->filename is NULL\n");
 		tmp = redir->next;
 		free(redir->filename);
 		free(redir);
@@ -71,7 +67,6 @@ void	free_command(t_command *cmd)
 	free(cmd->outfile);
 	free(cmd->delimiter);
 	free(cmd->path);
-	fprintf(stderr, "FREE CMD\n");
 	free_redirections(cmd->redirections);
 	free(cmd);
 }

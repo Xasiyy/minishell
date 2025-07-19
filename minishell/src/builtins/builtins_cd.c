@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_cd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 10:31:50 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/30 12:41:59 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/19 21:59:12 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,21 @@ int	builtin_cd(char **cmd)
 {
 	t_shell	*shell;
 	char	*target;
-	
+
 	shell = get_shell_context(NULL);
 	if (cmd[1] && cmd[2])
-	{
-		ft_putendl_fd("cd: too many arguments", 2);
-		return (1);
-	}
+		return (ft_putendl_fd("cd: too many arguments", 2), 1);
 	if (!cmd[1] || ft_strcmp(cmd[1], "~") == 0)
 	{
 		target = getenv("HOME");
 		if (!target)
-		{
-			ft_putendl_fd("cd: HOME not set", 2);
-			return (1);
-		}
+			return (ft_putendl_fd("cd: HOME not set", 2), 1);
 	}
 	else if (ft_strcmp(cmd[1], "-") == 0)
 	{
 		target = getenv("OLDPWD");
 		if (!target)
-		{
-			ft_putendl_fd("cd : OLDPWD not set", 2);
-			return (1);
-		}
+			return (ft_putendl_fd("cd : OLDPWD not set", 2), 1);
 		ft_putendl_fd(target, 1);
 	}
 	else

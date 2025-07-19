@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 18:00:52 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/16 14:10:43 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/19 17:54:02 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ int								is_valid_identifier(const char *str);
 int								is_safe_in_parent(t_command *cmd);
 int								is_safe_in_executed_parent(char *name);
 // heredoc.c
-char	*handle_heredoc(char *delimiter);
+char							*handle_heredoc(char *delimiter);
 
 // command_path
 // command_path.c
@@ -322,7 +322,8 @@ void							add_redirection(t_command *cmd,
 									t_redir_type type, char *filename);
 void							expand_all_tokens_with_quotes(char **tokens,
 									int *quote_flags, t_shell *shell);
-void	handle_redirection(char **tokens, int *i, t_command *cmd);
+void							handle_redirection(char **tokens, int *i,
+									t_command *cmd);
 t_redir_type					get_redirection_type(char *t);
 char							*extract_redirection_filename(char **tokens,
 									int *i);

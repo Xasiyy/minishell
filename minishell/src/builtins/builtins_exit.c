@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_exit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 12:57:07 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/17 14:19:28 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/07/19 17:54:54 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	builtin_exit(char **cmd, t_shell *shell)
 {
 	pid_t	parent_pid;
 
-	// printf("exit\n");
 	parent_pid = get_shell_context(NULL)->main_pid;
 	if (getpid() != parent_pid)
 	{

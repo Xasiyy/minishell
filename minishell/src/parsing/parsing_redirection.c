@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_redirection.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 15:28:04 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/07/16 14:16:21 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/19 21:40:49 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	add_redirection(t_command *cmd, t_redir_type type, char *filename)
 	}
 	if (type == REDIR_HEREDOC)
 	{
-		fprintf(stderr, "HEREDOC allocated: %s\n", filename);
 		tmpfile = handle_heredoc(filename);
 		free(filename);
 		if (!tmpfile)
