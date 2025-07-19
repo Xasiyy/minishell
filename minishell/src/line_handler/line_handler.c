@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:51:42 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/16 14:13:00 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/20 01:45:47 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,16 @@ void	handle_line(char *line, t_shell *shell)
 {
 	if (!handle_quotes_and_history(line, shell))
 		return ;
+	g_signal = 0;
 	shell->pipeline = parse_pipeline(line, shell);
 	if (g_signal == SIGINT)
 	{
 		shell->last_exit_status = 130;
-		free_command_list(shell->pipeline->commands);
-		free(shell->pipeline);
+		if (shell->pipeline)
+		{
+			free_command_list(shell->pipeline->commands);
+			free(shell->pipeline);
+		}
 		shell->pipeline = NULL;
 		return ;
 	}

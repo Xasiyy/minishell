@@ -6,7 +6,7 @@
 /*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 20:35:41 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/07/19 21:57:13 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/20 01:27:26 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,23 +65,25 @@ int	loop_heredoc(int fd, char *delimiter)
 {
 	char	*line;
 
+	g_signal = 0;
 	while (1)
 	{
-		write (1, "> ", 2);
-		line = get_next_line(0);
-		if (!line)
+		line = readline("> ");
+		if (g_signal == SIGINT_HEREDOC || !line)
 		{
-			ft_eprintf("heredoc delimited by end of the file (wanted `EOF')\n");
+			if (line)
+				free(line);
 			return (1);
 		}
 		if (ft_strncmp(line, delimiter,
 				ft_strlen(delimiter)) == 0
-			&& line[ft_strlen(delimiter)] == '\n')
+			&& line[ft_strlen(delimiter)] == '\0')
 		{
 			free(line);
 			break ;
 		}
 		write(fd, line, ft_strlen(line));
+		write(fd, "\n", 1);
 		free(line);
 	}
 	return (0);
@@ -105,56 +107,45 @@ int	create_heredoc_file(char **template_name)
 	return (fd);
 }
 
-int	execute_heredoc_child(int fd, char *delimiter, char *template)
+int check_signal_hook(void)
 {
-	int	pid;
-	int	status;
-	int	ret;
-
-	pid = fork();
-	if (pid == -1)
-	{
-		safe_close(&fd);
-		unlink(template);
-		return (-1);
-	}
-	if (pid == 0)
-	{
-		signal(SIGINT, heredoc_sigint);
-		signal(SIGQUIT, SIG_IGN);
-		ret = loop_heredoc(fd, delimiter);
-		safe_close(&fd);
-		exit(ret);
-	}
-	safe_close(&fd);
-	signal(SIGINT, SIG_IGN);
-	waitpid(pid, &status, 0);
-	signal(SIGINT, sigint_handler);
-	return (status);
+    if (g_signal == SIGINT_HEREDOC)
+    {
+        rl_done = 1;
+        return 0;
+    }
+    return 0;
 }
 
 char	*handle_heredoc(char *delimiter)
 {
 	char	*template;
 	int		fd;
-	int		status;
-	char	*result;
+	void(*old_sigint)(int);
+	void(*old_sigquit)(int);
+	int result;
 
+	rl_event_hook = check_signal_hook;
 	fd = create_heredoc_file(&template);
 	if (fd == -1)
 		return (NULL);
-	status = execute_heredoc_child(fd, delimiter, template);
-	if (status == -1)
-		return (unlink(template), free(template), NULL);
-	g_signal = 0;
-	if (WIFSIGNALED(status) && WTERMSIG(status) == SIGINT)
+	old_sigint = signal(SIGINT, heredoc_sigint);
+	old_sigquit = signal(SIGQUIT, SIG_IGN);
+	result = loop_heredoc(fd, delimiter);
+	rl_event_hook = NULL;
+	signal(SIGINT, old_sigint);
+	signal(SIGQUIT, old_sigquit);
+	if (result != 0 || g_signal == SIGINT_HEREDOC)
 	{
-		g_signal = SIGINT;
+		if (g_signal == SIGINT_HEREDOC)
+			g_signal = SIGINT;
+		else
+			g_signal = 0;
+		safe_close(&fd);
 		unlink(template);
 		free(template);
 		return (NULL);
 	}
-	result = ft_strdup(template);
-	free(template);
-	return (result);
+	safe_close(&fd);
+	return (template);
 }

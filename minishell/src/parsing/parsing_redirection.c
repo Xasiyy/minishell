@@ -6,7 +6,7 @@
 /*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 15:28:04 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/07/19 21:40:49 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/20 01:30:55 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // Ajoute redirection a la liste chaine des redirection d une cmd
 void	add_redirection(t_command *cmd, t_redir_type type, char *filename)
 {
-	t_redir	*new = malloc(sizeof(*new));
+	t_redir	*new = ft_calloc(1, sizeof(*new));
 	t_redir	*tmp;
 	char	*tmpfile;
 
@@ -24,6 +24,9 @@ void	add_redirection(t_command *cmd, t_redir_type type, char *filename)
 		ft_eprintf("minishell: internal redirection error (invalid filename)\n");
 		return ;
 	}
+	new->filename = NULL;
+	new->type = type;
+	new->next = NULL;
 	if (type == REDIR_HEREDOC)
 	{
 		tmpfile = handle_heredoc(filename);
@@ -31,7 +34,8 @@ void	add_redirection(t_command *cmd, t_redir_type type, char *filename)
 		if (!tmpfile)
 		{
 			free(new);
-			ft_eprintf("minishell: heredoc failed\n");
+			if (g_signal != SIGINT_HEREDOC && g_signal != SIGINT)
+				ft_eprintf("heredoc delimited by end of the file (wanted `EOF')\n");
 			return;
 		}
 		new->filename = tmpfile;

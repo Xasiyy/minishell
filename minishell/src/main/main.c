@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:55:41 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/16 14:12:15 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/20 01:45:35 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	start_shell_loop(t_shell *shell)
 			shell->last_exit_status = 2;
 			continue ;
 		}
-		free_split(tmp);
+		if (tmp)
+			free_split(tmp);
 		handle_line(line, shell);
 		free_all(shell);
 		free(line);

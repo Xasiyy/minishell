@@ -6,7 +6,7 @@
 /*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:59:00 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/03 15:28:20 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/20 01:43:39 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	sigint_handler(int signo)
 
 	//shell = get_shell_context(NULL);
 	(void)signo;
-	g_signal = SIGINT;
+	g_signal = SIGINT_NORMAL;
 	write(1, "^C\n", 3);
 	//shell->last_exit_status = 130;
 	rl_on_new_line();
@@ -59,9 +59,11 @@ void	sigint_handler(int signo)
 void	heredoc_sigint(int signo)
 {
 	(void)signo;
-//	g_signal = SIGINT;
-	write(1, "\n", 1);
-	exit(130);
+	g_signal = SIGINT_HEREDOC;
+	//write(1, "\n", 1);
+	//rl_replace_line("", 0);
+	//rl_redisplay();
+	rl_done = 1;
 }
 
 // Handler pr SIGQUIT (Ctrl+\)

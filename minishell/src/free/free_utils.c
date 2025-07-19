@@ -6,7 +6,7 @@
 /*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:39:47 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/19 17:28:57 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/19 22:29:29 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	free_command_list(t_command *cmd_list)
 void	free_redirections(t_redir *redir)
 {
 	t_redir	*tmp;
+
 	while (redir)
 	{
 		tmp = redir->next;

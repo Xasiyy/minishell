@@ -6,7 +6,7 @@
 /*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 18:00:52 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/19 17:54:02 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/20 01:12:34 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # include <unistd.h>
 
 # define MAX_INPUT 1024
+# define SIGINT_HEREDOC 42
+# define SIGINT_NORMAL SIGINT
 
 extern volatile sig_atomic_t	g_signal;
 
@@ -157,6 +159,7 @@ int								is_safe_in_parent(t_command *cmd);
 int								is_safe_in_executed_parent(char *name);
 // heredoc.c
 char							*handle_heredoc(char *delimiter);
+char							*generate_tmp_filename(void);
 
 // command_path
 // command_path.c
