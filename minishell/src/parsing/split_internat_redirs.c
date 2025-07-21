@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   split_internat_redirs.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 16:00:35 by ncullu            #+#    #+#             */
-/*   Updated: 2025/05/27 16:11:54 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/07/21 10:29:46 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//
-static int	update_quote_state(int quote, char c)
+int	update_quote_state(int quote, char c)
 {
 	if (!quote && (c == '\'' || c == '"'))
 		return (c);
@@ -22,7 +21,6 @@ static int	update_quote_state(int quote, char c)
 	return (quote);
 }
 
-//
 static void	handle_double_redir(char **t, char **out, size_t *j, int k)
 {
 	if (k > 0)
@@ -39,9 +37,7 @@ static void	handle_simple_redir(char **t, char **out, size_t *j, int k)
 	*t += k + 1;
 }
 
-#include "minishell.h"
-
-static int	process_redir_token(char **t, char **out, size_t *j, int k)
+int	process_redir_token(char **t, char **out, size_t *j, int k)
 {
 	int	len;
 
@@ -62,33 +58,6 @@ static int	process_redir_token(char **t, char **out, size_t *j, int k)
 	return (0);
 }
 
-void	split_token_redirs(char *t, char **out, size_t *j)
-{
-	int	k;
-	int	len;
-	int	quote;
-
-	k = 0;
-	quote = 0;
-	len = ft_strlen(t);
-	while (k < len)
-	{
-		quote = update_quote_state(quote, t[k]);
-		if (!quote && (t[k] == '>' || t[k] == '<'))
-		{
-			if (process_redir_token(&t, out, j, k))
-			{
-				len = ft_strlen(t);
-				k = 0;
-				continue ;
-			}
-		}
-		k++;
-	}
-	if (len > 0)
-		out[(*j)++] = ft_strdup(t);
-}
-
 char	**split_internat_redirs(char **tokens)
 {
 	size_t	i;
@@ -103,7 +72,7 @@ char	**split_internat_redirs(char **tokens)
 		total += count_redir_pieces(tokens[i]);
 		i++;
 	}
-	out = malloc((total + 1) * sizeof *out);
+	out = malloc((total + 1) * sizeof * out);
 	if (!out)
 		return (tokens);
 	i = 0;

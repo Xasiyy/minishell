@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_tokens.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 15:25:20 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/07/02 21:23:10 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/21 10:13:33 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 size_t	count_redir_pieces(char *t)
 {
-	size_t pieces;
-	int k;
-	int len;
+	size_t	pieces;
+	int		k;
+	int		len;
 
 	pieces = 1;
 	k = 0;

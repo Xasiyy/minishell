@@ -6,7 +6,7 @@
 /*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 16:44:12 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/16 13:39:36 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/21 10:03:21 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static int	count_args(char **tok, int *flags)
 {
 	int	i;
 	int	count;
-	(void)flags;
 
+	(void)flags;
 	i = 0;
 	count = 0;
 	while (tok[i])
@@ -57,8 +57,9 @@ static int	count_args(char **tok, int *flags)
 static int	handle_redir(char **tok, int *i, t_command *cmd)
 {
 	char	*filename;
-	char	*raw = tok[*i];
+	char	*raw;
 
+	raw = tok[*i];
 	if (!tok[*i + 1] || is_redirection(tok[*i + 1]))
 	{
 		syntax_error(&tok[*i + 1]);
@@ -81,8 +82,8 @@ static int	fill_args(char **tok, int *flags, t_command *cmd)
 {
 	int	i;
 	int	ac;
-	(void)flags;
 
+	(void)flags;
 	i = 0;
 	ac = 0;
 	while (tok[i])
@@ -91,7 +92,7 @@ static int	fill_args(char **tok, int *flags, t_command *cmd)
 		{
 			if (handle_redir(tok, &i, cmd))
 				return (1);
-			continue;
+			continue ;
 		}
 		cmd->args[ac++] = ft_strdup(tok[i]);
 		i++;

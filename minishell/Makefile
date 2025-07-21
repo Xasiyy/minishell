@@ -63,10 +63,12 @@ SRCS = builtins/builtins_cd.c \
        parsing/parsing_tokens.c \
        parsing/parsing_redirec.c \
        parsing/parsing_redirection.c \
+       parsing/parsing_add_redirection.c \
        parsing/parsing_syntax.c \
        parsing/parsing_pipeline.c \
        parsing/split_pipeline.c \
        parsing/segmentation_quotes.c \
+       parsing/parsing_split_token_redirs.c \
        parsing/split_internat_redirs.c \
        parsing/split_quotes.c \
        parsing/parsing_field_splitting.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_quotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 14:28:11 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/07/02 21:21:49 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/21 10:38:44 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,17 @@ char	**ft_realloc_split(char **old, int new_size)
 	return (new);
 }
 
+static char	*extract_redirection_token(const char *input, int *i)
+{
+	int	start;
+
+	start = *i;
+	(*i)++;
+	if (input[*i] == input[start])
+		(*i)++;
+	return (ft_substr(input, start, *i - start));
+}
+
 // Extrait un token de la chaine en respectant les guillemets
 char	*extract_token(const char *input, int *i)
 {
@@ -40,13 +51,7 @@ char	*extract_token(const char *input, int *i)
 	char	*token;
 
 	if (input[*i] == '<' || input[*i] == '>')
-	{
-		start = *i;
-		(*i)++;
-		if (input[*i] == input[start])
-			(*i)++;
-		return (ft_substr(input, start, *i - start));
-	}
+		return (extract_redirection_token(input, i));
 	start = *i;
 	quote = 0;
 	while (input[*i])
@@ -58,7 +63,8 @@ char	*extract_token(const char *input, int *i)
 			(*i)++;
 			quote = 0;
 		}
-		else if (!quote && (is_space(input[*i]) || input[*i] == '<' || input[*i] == '>'))
+		else if (!quote && (is_space(input[*i])
+				|| input[*i] == '<' || input[*i] == '>'))
 			break ;
 		else
 			(*i)++;

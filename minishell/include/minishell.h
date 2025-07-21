@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 18:00:52 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/20 16:15:14 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/21 10:29:07 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -377,9 +377,13 @@ void							handle_segment_quote(const char *input, int *i,
 t_segment						*split_segments(const char *input);
 
 // Plit_internat_redirs.c
+char							**split_internat_redirs(char **tokens);
+int								update_quote_state(int quote, char c);
+int								process_redir_token(char **t, char **out, size_t *j, int k);
+
+//split_token_redirs.c
 void							split_token_redirs(char *t, char **out,
 									size_t *j);
-char							**split_internat_redirs(char **tokens);
 
 // split_pipeline.c
 int								count_pipeline_parts(const char *str);

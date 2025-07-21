@@ -6,7 +6,7 @@
 /*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:54:45 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/16 14:26:28 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/21 09:48:02 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,6 @@ t_command	*build_command(char **tokens, int *quote_flags, t_shell *shell)
 		free_command(cmd);
 		return (NULL);
 	}
-	//parse_redirections(tokens, quote_flags, cmd);
-/* 	if (!cmd->args || !cmd->args[0])
-	{
-		free_command(cmd);
-		return (NULL);
-	} */
 	return (cmd);
 }
 

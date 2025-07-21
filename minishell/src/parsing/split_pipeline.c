@@ -6,7 +6,7 @@
 /*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 11:44:07 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/06/30 13:39:54 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/21 10:34:17 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,6 @@ int	count_pipeline_parts(const char *str)
 		{
 			if (str[i] == '|')
 				count++;
-/* 			else if (str[i] == '&' && str[i + 1] == '&')
-			{
-				count++;
-				i++;
-			} */
 		}
 		i++;
 	}
@@ -78,13 +73,10 @@ char	**split_pipeline_tokens(const char *str)
 	while (str[st.i])
 	{
 		update_quote(str[st.i], &quote);
-		if (quote == 0)
+		if (quote == 0 && str[st.i] == '|')
 		{
-			if (str[st.i] == '|')
-			{
-				if (handle_pipe_split(str, parts, &st))
-					continue ;
-			}
+			if (handle_pipe_split(str, parts, &st))
+				continue ;
 		}
 		st.i++;
 	}

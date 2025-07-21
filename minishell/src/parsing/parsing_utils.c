@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 15:04:45 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/05/27 13:40:44 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/07/21 10:06:31 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	is_pipe(char *tok)
+{
+	int	i;
+
+	if (!tok)
+		return (0);
+	if (tok[0] != '|')
+		return (0);
+	i = 0;
+	while (tok[i] == '|')
+		i++;
+	if (tok[i] == '\0' && i == 1)
+		return (1);
+	return (0);
+}
 
 // Verifie si espace ou tab
 int	is_space(char c)

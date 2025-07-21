@@ -3,60 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_redirection.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 15:28:04 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/07/20 01:30:55 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/21 10:54:49 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// Ajoute redirection a la liste chaine des redirection d une cmd
-void	add_redirection(t_command *cmd, t_redir_type type, char *filename)
-{
-	t_redir	*new = ft_calloc(1, sizeof(*new));
-	t_redir	*tmp;
-	char	*tmpfile;
-
-	if (!new || !filename)
-	{
-		ft_eprintf("minishell: internal redirection error (invalid filename)\n");
-		return ;
-	}
-	new->filename = NULL;
-	new->type = type;
-	new->next = NULL;
-	if (type == REDIR_HEREDOC)
-	{
-		tmpfile = handle_heredoc(filename);
-		free(filename);
-		if (!tmpfile)
-		{
-			free(new);
-			if (g_signal != SIGINT_HEREDOC && g_signal != SIGINT)
-				ft_eprintf("heredoc delimited by end of the file (wanted `EOF')\n");
-			return;
-		}
-		new->filename = tmpfile;
-	}
-	else
-	{
-		new->filename = ft_strdup(filename);
-		free(filename);
-	}
-	new->type = type;
-	new->next = NULL;
-	if (!cmd->redirections)
-		cmd->redirections = new;
-	else
-	{
-		tmp = cmd->redirections;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new;
-	}
-}
 
 void	expand_all_tokens_with_quotes(char **tokens, int *quote_flags,
 		t_shell *shell)
@@ -84,6 +38,21 @@ void	expand_all_tokens_with_quotes(char **tokens, int *quote_flags,
 	}
 }
 
+static int	validate_redirection_params(t_redir_type type,
+			char *expanded, int *i)
+{
+	if ((int)type == -1)
+		return (0);
+	if (!expanded || expanded[0] == '\0')
+	{
+		ft_eprintf("minishell: syntax error near unexpected token 'newline'\n");
+		free(expanded);
+		(*i)++;
+		return (0);
+	}
+	return (1);
+}
+
 // Détecte le type de redirection et extrait le nom de fichier
 void	handle_redirection(char **tokens, int *i, t_command *cmd)
 {
@@ -91,13 +60,9 @@ void	handle_redirection(char **tokens, int *i, t_command *cmd)
 	char			*filename;
 	char			*expanded;
 	t_shell			*shell;
-	t_redir *redir = cmd->redirections;
-	while (redir)
-		redir = redir->next;
-	shell = get_shell_context(NULL); 
+
+	shell = get_shell_context(NULL);
 	type = get_redirection_type(tokens[*i]);
-	if ((int)type == -1)
-		return ;
 	filename = extract_redirection_filename(tokens, i);
 	if (!filename)
 	{
@@ -107,13 +72,8 @@ void	handle_redirection(char **tokens, int *i, t_command *cmd)
 	}
 	expanded = expand_variables(filename, QUOTE_NONE, shell);
 	free(filename);
-	if (!expanded || expanded[0] == '\0')
-	{
-		ft_eprintf("minishell: syntax error near unexpected token 'newline'\n");
-		free(expanded);
-		(*i)++;
+	if (!validate_redirection_params(type, expanded, i))
 		return ;
-	}
 	add_redirection(cmd, type, expanded);
 	(*i)++;
 }
@@ -145,7 +105,7 @@ char	*extract_redirection_filename(char **tokens, int *i)
 		return (t + 1);
 	}
 	if (!tokens[*i + 1])
-		return (NULL);	
+		return (NULL);
 	*i += 1;
 	if (!tokens[*i] || tokens[*i][0] == '\0')
 		return (NULL);

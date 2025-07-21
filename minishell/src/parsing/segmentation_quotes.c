@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   segmentation_quotes.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 13:43:54 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/05/27 16:47:30 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/07/21 10:22:59 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,26 @@ void	handle_segment_quote(const char *input, int *i,
 		(*i)++;
 }
 
+static void	handle_quouted_segment(const char *input, int *i,
+				t_segment **segments)
+{
+	int		start;
+	char	*substr;
+	char	quote_type;
+
+	quote_type = input[*i];
+	start = ++(*i);
+	while (input[*i] && input[*i] != quote_type)
+		(*i)++;
+	substr = ft_substr(input, start, *i - start);
+	if (quote_type == '\'')
+		append_segment(segments, new_segment(substr, QUOTE_SIMPLE));
+	else
+		append_segment(segments, new_segment(substr, QUOTE_DOUBLE));
+	if (input[*i])
+		(*i)++;
+}
+
 // Decoupe chaine en segment selon les guillemets (simple double ou aucun)
 t_segment	*split_segments(const char *input)
 {
@@ -70,26 +90,13 @@ t_segment	*split_segments(const char *input)
 	int			i;
 	int			start;
 	char		*substr;
-	char		quote_type;
 
 	segments = NULL;
 	i = 0;
 	while (input[i])
 	{
 		if (input[i] == '\'' || input[i] == '"')
-		{
-			quote_type = input[i];
-			start = ++i;
-			while (input[i] && input[i] != quote_type)
-				i++;
-			substr = ft_substr(input, start, i - start);
-			if (quote_type == '\'')
-				append_segment(&segments, new_segment(substr, QUOTE_SIMPLE));
-			else
-				append_segment(&segments, new_segment(substr, QUOTE_DOUBLE));
-			if (input[i])
-				i++;
-		}
+			handle_quouted_segment(input, &i, &segments);
 		else
 		{
 			start = i;

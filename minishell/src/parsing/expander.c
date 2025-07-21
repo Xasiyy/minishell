@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:40:04 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/27 17:43:16 by abollia          ###   ########.fr       */
+/*   Updated: 2025/07/21 09:40:48 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,11 @@ static void	handle_exit_status(char **res, int *i, int exit_code)
 
 	exit_status = ft_itoa(exit_code);
 	*res = append_expanded_to_result(*res, exit_status);
-	//free(exit_status);
 	(*i)++;
 }
 
 // quote est inutilisé donc on le marque comme tel
-static void	handle_dollar(char *str, int *i, int quote __attribute__((unused)),
-		t_shell *sh, char **res)
+static void	handle_dollar(char *str, int *i, t_shell *sh, char **res)
 {
 	char	*expanded;
 
@@ -37,8 +35,6 @@ static void	handle_dollar(char *str, int *i, int quote __attribute__((unused)),
 	{
 		expanded = expand_and_append_var(str, i, sh);
 		*res = append_expanded_to_result(*res, expanded);
-		// if (expanded)
-		// 	free(expanded);
 	}
 }
 
@@ -57,7 +53,7 @@ char	*expand_variables(char *str, int quote_type, t_shell *shell)
 		if (str[i] == '$' && quote_type != 1 && str[i + 1])
 		{
 			i++;
-			handle_dollar(str, &i, quote_type, shell, &res);
+			handle_dollar(str, &i, shell, &res);
 		}
 		else
 			res = append_char_to_result(res, str[i++]);
