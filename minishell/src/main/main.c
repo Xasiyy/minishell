@@ -6,7 +6,7 @@
 /*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:55:41 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/20 01:45:35 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/20 18:18:52 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,18 @@ void	reset_readline(void)
 	rl_redisplay();
 }
 
+static int	handle_syntax_errors(char **tmp, char *line, t_shell *shell)
+{
+	if (tmp && syntax_error(tmp))
+	{
+		free_split(tmp);
+		free(line);
+		shell->last_exit_status = 2;
+		return (1);
+	}
+	return (0);
+}
+
 // Boucle principale du shell : lit et exécute les commandes
 void	start_shell_loop(t_shell *shell)
 {
@@ -28,7 +40,6 @@ void	start_shell_loop(t_shell *shell)
 
 	while (1)
 	{
-		//signal(SIGINT, sigint_handler);
 		setup_interactive_signals();
 		line = readline("minishell$ ");
 		if (!line)
@@ -38,13 +49,8 @@ void	start_shell_loop(t_shell *shell)
 			exit(0);
 		}
 		tmp = split_respecting_quotes(line);
-		if (tmp && syntax_error(tmp))
-		{
-			free_split(tmp);
-			free(line);
-			shell->last_exit_status = 2;
+		if (handle_syntax_errors(tmp, line, shell))
 			continue ;
-		}
 		if (tmp)
 			free_split(tmp);
 		handle_line(line, shell);
@@ -68,7 +74,6 @@ int	main(int argc, char **argv, char **envp)
 	shell->pipeline = NULL;
 	init_signals();
 	shell->main_pid = getpid();
-	//setup_interactive_signals();
 	start_shell_loop(shell);
 	printf("free_shell main\n");
 	free_shell(shell, 1);

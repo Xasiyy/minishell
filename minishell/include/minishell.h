@@ -6,7 +6,7 @@
 /*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 18:00:52 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/20 01:12:34 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/20 16:15:14 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,8 @@ int								set_env_var(char ***env, const char *key,
 									const char *value);
 int								copy_old_env(char **new_env, char **old_env,
 									int count);
+//env_entry.c
+char							*make_env_entry(const char *key, const char *value);
 
 // execution
 // chid_utils.c
@@ -257,7 +259,6 @@ void							free_command(t_command *cmd);
 void							free_env(t_env *env);
 void							free_segments(t_segment *seg);
 void							free_redirections(t_redir *redir);
-void							free_pipeline(t_pipeline *pipeline);
 
 // memory_utils.c
 void							free_split(char **split);

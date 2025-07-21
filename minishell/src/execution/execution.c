@@ -6,7 +6,7 @@
 /*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:59:25 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/03 12:41:34 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/20 16:06:43 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,22 @@
 // Gère l'exécution d'une commande (builtin ou externe)
 void	execute_command(t_command *cmd, char **env, int *exit_status)
 {
+	int	save_in;
+	int	save_out;
+	int	ret;
+
 	(void)env;
-	if ((!cmd || !cmd->args || !cmd->args[0] || cmd->args[0][0] == '\0') && cmd->redirections)
+	if ((!cmd || !cmd->args || !cmd->args[0]
+			|| cmd->args[0][0] == '\0') && cmd->redirections)
 	{
-		int save_in = dup(STDIN_FILENO);
-		int save_out = dup(STDOUT_FILENO);
-		int ret = handle_redirections(cmd);
+		save_in = dup(STDIN_FILENO);
+		save_out = dup(STDOUT_FILENO);
+		ret = handle_redirections(cmd);
 		dup2(save_in, STDIN_FILENO);
 		dup2(save_out, STDOUT_FILENO);
 		safe_close(&save_in);
 		safe_close(&save_out);
-		*exit_status = (ret == - 1);
+		*exit_status = (ret == -1);
 		return ;
 	}
 	parent_process(cmd, env, exit_status);
@@ -68,7 +73,7 @@ void	execute_external(t_command *cmd, char **env, int *exit_status)
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
 		if (handle_redirections(cmd) == -1)
-		{	
+		{
 			free_shell(get_shell_context(NULL), 1);
 			exit(1);
 		}

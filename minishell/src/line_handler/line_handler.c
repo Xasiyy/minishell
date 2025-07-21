@@ -6,11 +6,19 @@
 /*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:51:42 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/20 01:45:47 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/20 16:15:05 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	free_pipeline(t_pipeline *pipeline)
+{
+	if (!pipeline)
+		return ;
+	free_command_list(pipeline->commands);
+	free(pipeline);
+}
 
 // Traite une ligne lue : parsing + exécution
 void	handle_line(char *line, t_shell *shell)

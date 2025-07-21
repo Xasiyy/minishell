@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:28:25 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/28 17:42:12 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/20 15:54:44 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,13 @@ int	handle_redirections(t_command *cmd)
 			ft_eprintf("minishell: %s: %s\n", redir->filename, strerror(errno));
 			return (-1);
 		}
-		if ((redir->type == REDIR_IN || redir->type == REDIR_HEREDOC) && dup2(fd, STDIN_FILENO) == -1)
+		if ((redir->type == REDIR_IN
+				|| redir->type == REDIR_HEREDOC)
+			&& dup2(fd, STDIN_FILENO) == -1)
 			return (safe_close(&fd), -1);
-		if ((redir->type == REDIR_OUT || redir->type == REDIR_APPEND) && dup2(fd, STDOUT_FILENO) == -1)
+		if ((redir->type == REDIR_OUT
+				|| redir->type == REDIR_APPEND)
+			&& dup2(fd, STDOUT_FILENO) == -1)
 			return (safe_close(&fd), -1);
 		safe_close(&fd);
 		redir = redir->next;

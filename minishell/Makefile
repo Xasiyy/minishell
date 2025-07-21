@@ -36,6 +36,7 @@ SRCS = builtins/builtins_cd.c \
        env/env_display.c \
        env/env_unset.c \
        env/env_utils.c \
+       env/env_entry.c \
        execution/child_utils.c \
        execution/execution_child.c \
        execution/execution.c \
@@ -46,8 +47,8 @@ SRCS = builtins/builtins_cd.c \
        free/free_shell.c \
        free/free_utils.c \
        free/memory_utils.c \
-       free/clean_exit.c \
        free/safe_close.c \
+       free/clean_and_exit.c \
        helpers/env_helpers.c \
        helpers/execution_helpers.c \
        line_handler/line_handler.c \

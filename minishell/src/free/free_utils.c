@@ -6,7 +6,7 @@
 /*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:39:47 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/19 22:29:29 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/20 16:14:53 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,4 @@ void	free_env(t_env *env)
 		free(env->envp);
 	}
 	free(env);
-}
-
-void	free_pipeline(t_pipeline *pipeline)
-{
-	if (!pipeline)
-		return ;
-	free_command_list(pipeline->commands);
-	free(pipeline);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_child.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:59:02 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/25 17:33:02 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/20 15:53:44 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ void	execute_child(t_command *cmd, char **env)
 	shell = get_shell_context(NULL);
 	if (cmd->redirections && handle_redirections(cmd) == -1)
 		_exit(EXIT_FAILURE);
-	if ((!cmd->args || !cmd->args[0] || cmd->args[0][0] == '\0') && cmd->heredoc)
+	if ((!cmd->args || !cmd->args[0]
+			|| cmd->args[0][0] == '\0') && cmd->heredoc)
 		_exit(0);
 	via_path = !contains_slash(cmd->args[0]);
 	cmd->path = resolve_command_path(cmd, env);

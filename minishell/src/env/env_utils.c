@@ -3,83 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 12:12:12 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/27 17:42:32 by abollia          ###   ########.fr       */
+/*   Updated: 2025/07/20 12:05:21 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// Construit une string "key=value" avec une vraie copie
-/* static char	*make_env_entry(const char *key, const char *value)
-{
-	char	*new_var;
-	size_t	key_len;
-	size_t	val_len;
-
-	if (!key || !value)
-		return (NULL);
-	key_len = ft_strlen(key);
-	val_len = ft_strlen(value);
-	new_var = malloc(key_len + val_len + 2);
-	if (!new_var)
-		return (NULL);
-	ft_strcpy(new_var, key);
-	ft_strcat(new_var, "=");
-	ft_strcat(new_var, value);
-	return (new_var);
-} */
-static char	*make_env_no_value(const char *key)
-{
-	char	*new_var;
-	size_t	key_len;
-	size_t	i;
-	key_len = ft_strlen(key);
-	new_var = malloc(key_len + 1);
-	if (!new_var)
-		return (NULL);
-	i = 0;
-	while (i < key_len)
-	{
-		new_var[i] = key[i];
-		i++;
-	}
-	new_var[i] = '\0';
-	return (new_var);
-}
-
-static char	*make_env_entry(const char *key, const char *value)
-{
-	char	*new_var;
-	size_t	key_len;
-	size_t	val_len;
-	size_t	i;
-	if (!key)
-		return (NULL);
-	key_len = ft_strlen(key);
-	val_len = 0;
-	if (value)
-		val_len = ft_strlen(value);
-	if (!value || val_len == 0)
-		return (make_env_no_value(key));
-	new_var = malloc(key_len + val_len + 2);
-	if (!new_var)
-		return (NULL);
-	i = 0;
-	while (i < key_len)
-	{
-		new_var[i] = key[i];
-		i++;
-	}
-	new_var[i++] = '=';
-	val_len = 0;
-	while (value[val_len])
-		new_var[i++] = value[val_len++];
-	new_var[i] = '\0';
-	return (new_var);
-}
 
 // Fait une copie complète du tableau d'env existant
 char	**copy_env(char **envp)

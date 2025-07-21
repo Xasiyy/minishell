@@ -6,7 +6,7 @@
 /*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 20:35:41 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/07/20 01:27:26 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/20 11:52:37 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,41 +25,6 @@ char	*generate_tmp_filename(void)
 	free(num_str);
 	return (result);
 }
-
-/* char	*generate_tmp_filename(void)
-{
-	char	*base = "/tmp/minishell_heredoc_";
-	char	*filename;
-	char	num[12];
-	int		pid = getpid();
-	static	int	counter = 0;
-	int		i = 0, j = 0;
-
-	while (pid > 0)
-	{
-		num[i++] = (pid % 10) + '0';
-		pid /= 10;
-	}
-	num[i] = 0;
-	filename = malloc(ft_strlen(base) + i + 6 + 1);
-	if (!filename)
-		return (NULL);
-	while (base[j])
-	{
-		filename[j] = base[j];
-		j++;
-	}
-	while (--i >= 0)
-		filename[j++] = num[i];
-	filename[j++] = '_';
-	filename[j++] = (counter / 100) % 10 + '0';
-	filename[j++] = (counter / 10) % 10 + '0';
-	filename[j++] = (counter % 10) + '0';
-	counter++;
-
-	filename[j] = '\0';
-	return (filename);
-} */
 
 int	loop_heredoc(int fd, char *delimiter)
 {
@@ -107,23 +72,23 @@ int	create_heredoc_file(char **template_name)
 	return (fd);
 }
 
-int check_signal_hook(void)
+int	check_signal_hook(void)
 {
-    if (g_signal == SIGINT_HEREDOC)
-    {
-        rl_done = 1;
-        return 0;
-    }
-    return 0;
+	if (g_signal == SIGINT_HEREDOC)
+	{
+		rl_done = 1;
+		return (0);
+	}
+	return (0);
 }
 
 char	*handle_heredoc(char *delimiter)
 {
 	char	*template;
 	int		fd;
-	void(*old_sigint)(int);
-	void(*old_sigquit)(int);
-	int result;
+	int		result;
+	void	(*old_sigint)(int);
+	void	(*old_sigquit)(int);
 
 	rl_event_hook = check_signal_hook;
 	fd = create_heredoc_file(&template);
@@ -141,11 +106,7 @@ char	*handle_heredoc(char *delimiter)
 			g_signal = SIGINT;
 		else
 			g_signal = 0;
-		safe_close(&fd);
-		unlink(template);
-		free(template);
-		return (NULL);
+		return (safe_close(&fd), unlink(template), free(template), NULL);
 	}
-	safe_close(&fd);
-	return (template);
+	return (safe_close(&fd), template);
 }
