@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:05:27 by ncullu            #+#    #+#             */
-/*   Updated: 2025/05/21 13:08:50 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/07/22 14:10:09 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	heredoc_sigint(int signo)
+{
+	(void)signo;
+	g_signal = SIGINT_HEREDOC;
+	rl_done = 1;
+}
 
 // Vérifie si une cmd peut être exécutée ds parent (pas de pipe ni redirec)
 int	is_safe_in_parent(t_command *cmd)
