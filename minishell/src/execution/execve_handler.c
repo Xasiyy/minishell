@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   execve_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:45:12 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/17 16:12:35 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/07/23 14:12:14 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Affiche et gère l’erreur Permission denied (code 126)
+// Displays and handles Permission denied error (code 126)
 static void	print_perm_denied(t_command *cmd, t_shell *shell)
 {
 	ft_eprintf("minishell: %s: Permission denied\n", cmd->args[0]);
@@ -20,7 +20,7 @@ static void	print_perm_denied(t_command *cmd, t_shell *shell)
 	_exit(126);
 }
 
-// Affiche et gère l’erreur command not found (code 127)
+// Displays and handles command not found error (code 127)
 static void	print_not_found(t_command *cmd, t_shell *shell)
 {
 	ft_eprintf("minishell: %s: command not found\n", cmd->args[0]);
@@ -28,7 +28,7 @@ static void	print_not_found(t_command *cmd, t_shell *shell)
 	_exit(127);
 }
 
-// Affiche et gère l’erreur no such file or directory (code 127)
+// Displays and handles the no such file or directory error (code 127)
 static void	print_no_such_file(t_command *cmd, t_shell *shell)
 {
 	ft_eprintf("minishell: %s: no such file or directory\n", cmd->args[0]);
@@ -36,7 +36,7 @@ static void	print_no_such_file(t_command *cmd, t_shell *shell)
 	_exit(127);
 }
 
-// Affiche et gère l’erreur Is a directory (code 126)
+// Displays and handles Is a directory error (code 126)
 static void	print_is_dir(t_command *cmd, t_shell *shell)
 {
 	ft_eprintf("minishell: %s: Is a directory\n", cmd->args[0]);
@@ -44,7 +44,7 @@ static void	print_is_dir(t_command *cmd, t_shell *shell)
 	_exit(126);
 }
 
-// Gère toutes les erreurs retournées par execve()
+// Handles all errors returned by execve()
 void	handle_execve_errors(t_command *cmd, int via_path_search)
 {
 	t_shell	*shell;

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   command_path.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 16:12:39 by ncullu            #+#    #+#             */
-/*   Updated: 2025/05/21 16:15:08 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/07/23 14:22:08 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Cherche commande ds PATH
+// Search command in PATH
 char	*find_command_in_path(char *cmd, char **env)
 {
 	if (!cmd || !*cmd || !env)
@@ -22,7 +22,7 @@ char	*find_command_in_path(char *cmd, char **env)
 	return (find_command_in_env_path(cmd, env));
 }
 
-// Verifie si commande est executable
+// Check if command is executable
 char	*check_access(char *cmd)
 {
 	if (access(cmd, X_OK) == 0)
@@ -30,7 +30,7 @@ char	*check_access(char *cmd)
 	return (NULL);
 }
 
-// Cherche comm ds les variable d environnement
+// Search cmd in environment variables
 char	*find_command_in_env_path(char *cmd, char **env)
 {
 	char	*path_var;
@@ -57,7 +57,7 @@ char	*find_command_in_env_path(char *cmd, char **env)
 	return (full_path);
 }
 
-// Teste un chemin possible pr une commande
+// Test a possible path for a command
 char	*try_path(char *cmd_path, char *cmd)
 {
 	char	*tmp;
@@ -76,7 +76,6 @@ char	*try_path(char *cmd_path, char *cmd)
 	return (NULL);
 }
 
-// Vérifie si chemin donné direct exécutable et return une copie chemin si cas
 char	*handle_direct_path(char *cmd)
 {
 	if (access(cmd, X_OK) == 0)

@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   free_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:46:34 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/27 17:43:01 by abollia          ###   ########.fr       */
+/*   Updated: 2025/07/23 14:08:53 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Libere tt memoire alloue pr structure principale shell
 void	free_shell(t_shell *shell, int force_env)
 {
 	if (!shell)
@@ -29,14 +28,12 @@ void	free_shell(t_shell *shell, int force_env)
 	free(shell);
 }
 
-// Libère la mémoire et quitte le programme ac le code donné
 void	clean_and_exit(t_shell *shell, int exit_code)
 {
 	free_shell(shell, 1);
 	exit(exit_code);
 }
 
-// Ne libère que la première chaîne
 char	*ft_join_free_left(char *s1, const char *s2)
 {
 	char	*res;
@@ -46,7 +43,6 @@ char	*ft_join_free_left(char *s1, const char *s2)
 	return (res);
 }
 
-// Libère les deux chaînes (s1 et s2 doivent toutes deux venir du heap)
 char	*ft_join_free_both(char *s1, char *s2)
 {
 	char	*res;
@@ -57,7 +53,6 @@ char	*ft_join_free_both(char *s1, char *s2)
 	return (res);
 }
 
-// Libere une liste chainee de segments
 void	free_segments(t_segment *seg)
 {
 	t_segment	*tmp;

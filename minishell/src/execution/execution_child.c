@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_child.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:59:02 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/20 15:53:44 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/23 14:13:59 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <errno.h>
 #include <sys/stat.h>
 
-// Vérifie si une chaîne contient un '/'
+// Checks if a string contains a ‘/’.
 static int	contains_slash(const char *s)
 {
 	while (*s)
@@ -25,7 +25,7 @@ static int	contains_slash(const char *s)
 	return (0);
 }
 
-// Résout le chemin de la commande (avec ou sans PATH)
+// Resolves command path (with or without PATH)
 char	*resolve_command_path(t_command *cmd, char **env)
 {
 	if (!cmd || !cmd->args || !cmd->args[0] || cmd->args[0][0] == '\0')
@@ -39,7 +39,7 @@ char	*resolve_command_path(t_command *cmd, char **env)
 	return (cmd->path);
 }
 
-// Résout le chemin de la commande (avec ou sans PATH)
+// Resolves command path (with or without PATH)
 void	exit_cmd_not_found(t_shell *shell)
 {
 	ft_eprintf("minishell: command not found\n");
@@ -47,7 +47,7 @@ void	exit_cmd_not_found(t_shell *shell)
 	_exit(127);
 }
 
-// Quitte avec code 126 si la commande est un dossier
+// Exit with code 126 if the command is a folder
 static void	exit_is_directory(char *path, t_shell *shell)
 {
 	ft_eprintf("minishell: %s: Is a directory\n", path);
@@ -55,7 +55,7 @@ static void	exit_is_directory(char *path, t_shell *shell)
 	_exit(126);
 }
 
-// Exécute une commande dans un processus enfan
+// Executes a command in a child process
 void	execute_child(t_command *cmd, char **env)
 {
 	struct stat	st;

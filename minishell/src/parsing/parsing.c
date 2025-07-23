@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 18:27:50 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/19 22:31:52 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/23 13:54:05 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// gerer les $ et $?
+// manage $ and $?
 char	*get_var_name(const char *str, int *i)
 {
 	int		start;
@@ -30,7 +30,7 @@ char	*get_var_name(const char *str, int *i)
 	return (name);
 }
 
-// Ajoute un caractere a la fin d une chaine (realloue)
+// Adds a character to the end of a string (reallocates)
 char	*append_char_to_result(char *result, char c)
 {
 	char	tmp[2];
@@ -40,7 +40,7 @@ char	*append_char_to_result(char *result, char c)
 	return (ft_strjoin_free(result, ft_strdup(tmp)));
 }
 
-// Recupere valur de la variable a partir de son nom et ajoute a la chaine
+// Recovers the variable's value from its name and adds it to the string
 char	*expand_and_append_var(char *str, int *i, t_shell *shell)
 {
 	char	*var_name;
@@ -61,7 +61,7 @@ char	*expand_and_append_var(char *str, int *i, t_shell *shell)
 	return (ft_calloc(1, 1));
 }
 
-// Ajoute une chaine expande au resultat final
+// Add an expanded string to the final result
 char	*append_expanded_to_result(char *result, char *expanded)
 {
 	if (!expanded)

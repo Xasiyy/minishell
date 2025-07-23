@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:18:15 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/20 01:27:35 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/23 14:20:54 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Vérifie si commande fournie est interne Shell
+// Checks whether supplied command is internal Shell
 int	is_builtin(char **cmd)
 {
 	if (!cmd || !cmd[0])
@@ -25,7 +25,6 @@ int	is_builtin(char **cmd)
 	return (0);
 }
 
-// Exécute un builtin
 int	execute_builtin(char **cmd, int *exit_status)
 {
 	t_shell	*shell;
@@ -52,7 +51,7 @@ int	execute_builtin(char **cmd, int *exit_status)
 	return (1);
 }
 
-// Execute un builtin ac redirection en sauvardant/restorant les fd
+// Execute a builtin ac redirection by saving/restoring fd's
 int	execute_builtin_redirection(t_command *cmd, int *exit_status)
 {
 	int	stdout_backup;
@@ -82,7 +81,7 @@ int	execute_builtin_redirection(t_command *cmd, int *exit_status)
 	return (0);
 }
 
-// Verifie si l option -n passe a echo est valide
+// Check if the -n option passed to echo is valid
 int	is_valid_n_option(char *arg)
 {
 	int	i;
@@ -99,7 +98,7 @@ int	is_valid_n_option(char *arg)
 	return (1);
 }
 
-// Construit une liste chainee de cmd a partir d un tableau
+// Builds a chained cmd list from an array
 t_command	*build_cmd_list(t_command **cmds)
 {
 	t_command	*head;

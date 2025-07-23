@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_entry.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:54:45 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/21 09:48:02 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/23 14:04:08 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_command	*build_command(char **tokens, int *quote_flags, t_shell *shell)
 	return (cmd);
 }
 
-// Init un tableau de flags pr indiquer les quotes sur chaque token
+// Init an array of flags to indicate the quotes on each token
 int	*init_quote_flags(char **tokens)
 {
 	int	*flags;
@@ -72,7 +72,7 @@ int	*init_quote_flags(char **tokens)
 	return (flags);
 }
 
-// Nettoie, découpe et vérifie les tokens
+// Clean, cut and check tokens
 char	**parsing_token_setup(char *input)
 {
 	char	*cleaned;
@@ -96,7 +96,7 @@ char	**parsing_token_setup(char *input)
 	return (tokens);
 }
 
-// Applique les expansions à chaque token (variables d’environnement.)
+// Apply expansions to each token (environment variables.)
 void	expand_all_tokens(char **tokens, t_shell *shell)
 {
 	int		i;

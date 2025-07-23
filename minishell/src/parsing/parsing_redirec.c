@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_redirec.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 16:44:12 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/21 10:03:21 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/23 14:02:02 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Vérifie si une chaîne est entourée de guillemets simples ou doubles
+// Checks whether a string is enclosed in single or double quotation marks
 int	is_quoted(const char *s)
 {
 	int	len;
@@ -26,7 +26,7 @@ int	is_quoted(const char *s)
 				- 1] == '"'));
 }
 
-// Compte les arguments non-redirections (utile pour allouer cmd->args)
+// Count no redirection arguments (useful for allocating cmd->args)
 static int	count_args(char **tok, int *flags)
 {
 	int	i;
@@ -53,7 +53,7 @@ static int	count_args(char **tok, int *flags)
 	return (count);
 }
 
-// Gère une redirection et l’ajoute à la commande
+// Handles a redirection and adds it to the
 static int	handle_redir(char **tok, int *i, t_command *cmd)
 {
 	char	*filename;
@@ -77,7 +77,7 @@ static int	handle_redir(char **tok, int *i, t_command *cmd)
 	return (0);
 }
 
-// Remplit cmd->args avec les arguments restants hors redirections
+// Fills cmd->args with the remaining arguments excluding redirects
 static int	fill_args(char **tok, int *flags, t_command *cmd)
 {
 	int	i;
@@ -101,7 +101,7 @@ static int	fill_args(char **tok, int *flags, t_command *cmd)
 	return (0);
 }
 
-// Parse les redirections et arguments dans les tokens pour remplir cmd
+// Parse redirects and arguments in tokens to fill cmd
 int	parse_redirections(char **tok, int *flags, t_command *cmd)
 {
 	int	count;

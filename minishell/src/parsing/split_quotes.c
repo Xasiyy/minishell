@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   split_quotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 14:28:11 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/07/21 10:38:44 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/23 13:50:42 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Realloue tableau de chaine ac taille plus grande
+// Reallocate chain table ac larger size
 char	**ft_realloc_split(char **old, int new_size)
 {
 	char	**new;
@@ -43,7 +43,7 @@ static char	*extract_redirection_token(const char *input, int *i)
 	return (ft_substr(input, start, *i - start));
 }
 
-// Extrait un token de la chaine en respectant les guillemets
+// Extract a token from the string, respecting the quotation marks
 char	*extract_token(const char *input, int *i)
 {
 	int		start;
@@ -73,7 +73,7 @@ char	*extract_token(const char *input, int *i)
 	return (token);
 }
 
-// Decoupte une ligne en tokens, respectant () simple et double
+// Decodes a line into tokens, respecting () single and double
 char	**split_respecting_quotes(const char *input)
 {
 	int		i;

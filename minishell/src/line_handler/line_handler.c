@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:51:42 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/20 16:15:05 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/23 14:06:40 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	free_pipeline(t_pipeline *pipeline)
 	free(pipeline);
 }
 
-// Traite une ligne lue : parsing + exécution
+//parsing + exécution
 void	handle_line(char *line, t_shell *shell)
 {
 	if (!handle_quotes_and_history(line, shell))
@@ -44,7 +44,7 @@ void	handle_line(char *line, t_shell *shell)
 	shell->pipeline = NULL;
 }
 
-// Vérifie les quotes et ajoute à l’historique
+// Check quotes and add to history
 int	handle_quotes_and_history(char *line, t_shell *shell)
 {
 	if (!line)
@@ -59,7 +59,7 @@ int	handle_quotes_and_history(char *line, t_shell *shell)
 	return (1);
 }
 
-// Exécute un pipeline si plusieurs commandes, sinon exécute une seule
+// Executes a pipeline if several commands, otherwise executes a single command
 void	execute_pipeline_or_single(t_shell *shell)
 {
 	if (!shell->pipeline || !shell->pipeline->commands)

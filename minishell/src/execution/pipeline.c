@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:36:17 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/20 16:02:42 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/23 14:21:54 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Lance tts les commandes de la pipeline en créant un processus pr chacune
+// Launch all pipeline commands, creating a process for each one
 void	execute_pipeline(t_pipeline *pipeline, char **env)
 {
 	t_command	*cmd;
@@ -36,7 +36,6 @@ void	execute_pipeline(t_pipeline *pipeline, char **env)
 	wait_for_all_children(shell, last_pid);
 }
 
-// Gère la création du pipe, le fork, et appelle la f qui exécute le fils
 int	execute_child_process(t_command *cmd, char **env, int prev_fd,
 		pid_t *pid_out)
 {
@@ -61,7 +60,7 @@ int	execute_child_process(t_command *cmd, char **env, int prev_fd,
 	return (-1);
 }
 
-// Crée un pipe uniquement si la commande suivante existe
+// Create a pipe only if the following command exists
 int	setup_pipe(int pipe_fd[2], t_command *cmd)
 {
 	if (cmd->next && pipe(pipe_fd) == -1)
@@ -72,7 +71,7 @@ int	setup_pipe(int pipe_fd[2], t_command *cmd)
 	return (0);
 }
 
-// Ferme les bons descripteurs et met à jour prev_fd dans le proces parent
+// Close the correct descriptors and update prev_fd in the parent process
 int	handle_parent_after_fork(pid_t pid, t_command *cmd, int prev_fd,
 		int pipe_fd[2])
 {
@@ -98,7 +97,7 @@ int	handle_parent_after_fork(pid_t pid, t_command *cmd, int prev_fd,
 	return (-1);
 }
 
-// Attend ts les proces enfants et met à jour le code de sortie du shell
+// Waits for all child processes and updates shell exit code
 void	wait_for_all_children(t_shell *shell, pid_t last_pid)
 {
 	int		status;

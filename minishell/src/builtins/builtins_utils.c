@@ -6,7 +6,7 @@
 /*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:05:27 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/22 14:10:09 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/23 14:16:54 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	heredoc_sigint(int signo)
 	rl_done = 1;
 }
 
-// Vérifie si une cmd peut être exécutée ds parent (pas de pipe ni redirec)
+// Checks whether a cmd can be executed in parent (no pipes or redirects)
 int	is_safe_in_parent(t_command *cmd)
 {
 	if (!cmd)
@@ -31,7 +31,7 @@ int	is_safe_in_parent(t_command *cmd)
 	return (1);
 }
 
-// Vérifie si un builtin pt être exécuté ds le parent (cd, echo, pwd, etc.)
+// Checks whether a builtin can be executed on the parent (cd, echo, pwd, etc.).
 int	is_safe_in_executed_parent(char *name)
 {
 	if (!name)

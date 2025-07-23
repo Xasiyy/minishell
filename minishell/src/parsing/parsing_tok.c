@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_tok.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 13:27:49 by ncullu            #+#    #+#             */
-/*   Updated: 2025/05/27 13:46:16 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/07/23 13:57:10 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Découpe un token et effectue l’expansion selon les quotes
+// Cut out a token and expand it according to the quotes
 char	*parse_and_expand_token(const char *token, t_shell *shell)
 {
 	t_segment	*segments;
@@ -26,7 +26,7 @@ char	*parse_and_expand_token(const char *token, t_shell *shell)
 	return (result);
 }
 
-// Parcourt les segments et construit la chaîne finale expandée
+// Traverses the segments and builds the final expanded string
 char	*build_expanded_string(t_segment *segments, t_shell *shell)
 {
 	t_segment	*curr;

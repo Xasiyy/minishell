@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 15:04:45 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/07/21 10:06:31 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/23 13:54:41 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,12 @@ int	is_pipe(char *tok)
 	return (0);
 }
 
-// Verifie si espace ou tab
+// Check if space or tab
 int	is_space(char c)
 {
 	return (c == ' ' || c == '\t');
 }
 
-// compte les tokens
 int	count_tokens(const char *str)
 {
 	int		count;
@@ -62,7 +61,6 @@ int	count_tokens(const char *str)
 	return (count);
 }
 
-// fonction utils pour savoir si un token est un operateur
 int	is_special(char *token)
 {
 	if (!token)
@@ -72,7 +70,6 @@ int	is_special(char *token)
 		|| !ft_strncmp(token, "<<", 3));
 }
 
-// fonction utils pour savoir si un token en une redirrection
 int	is_redirection(char *token)
 {
 	if (!token || (token[0] != '<' && token[0] != '>'))

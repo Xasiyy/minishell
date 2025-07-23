@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_field_splitting.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 18:29:05 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/06/17 16:24:19 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/07/23 14:03:27 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Vérif si un mot vide peut être ignoré (non quoté)
+// Check whether an empty word can be ignored (unquoted)
 static int	is_discradable(char *word, int quote_flag)
 {
 	return (quote_flag == QUOTE_NONE && word[0] == '\0');
 }
 
-// Sup les mots vides non quotés ds les tokens et ajuste les quotes
+// Sup empty unquoted words in tokens and adjust quotes
 void	discard_empty_words(char **tok, int *quote)
 {
 	size_t	i;

@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   split_pipeline.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 11:44:07 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/07/21 10:34:17 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/23 13:52:12 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Compte combien partie une ligne contien separe par | ignore pipe entre ()
-
+// Count how many parts a line contains separated by | ignore pipe between ()
 int	count_pipeline_parts(const char *str)
 {
 	int		count;
@@ -36,7 +35,7 @@ int	count_pipeline_parts(const char *str)
 	return (count);
 }
 
-// Met a jour l etat ouverture/fermeture () simple ou double
+// Update open/close status () single or double
 void	update_quote(char c, char *quote)
 {
 	if ((c == '\'' || c == '"') && *quote == 0)
@@ -45,7 +44,7 @@ void	update_quote(char c, char *quote)
 		*quote = 0;
 }
 
-// Extrait portion de str en atnt que partie du pipeline et met a jour indice
+// Extract portion of str as part of pipeline and update index
 int	handle_pipe_split(const char *str, char **parts, t_pipe_state *st)
 {
 	parts[st->part_i++] = ft_substr(str, st->start, st->i - st->start);
@@ -56,7 +55,7 @@ int	handle_pipe_split(const char *str, char **parts, t_pipe_state *st)
 	return (1);
 }
 
-// Decoupe ligne cmd en sous partie separe par | en respectant quotes
+// Split cmd line into sub-sections separated by | respecting quotes
 char	**split_pipeline_tokens(const char *str)
 {
 	char			**parts;

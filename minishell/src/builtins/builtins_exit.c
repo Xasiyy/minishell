@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_exit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 12:57:07 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/19 17:54:54 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/23 14:18:29 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <limits.h>
 
-// Verif si chaine entier valide sans erreur
+// Verif if valid integer string without error
 int	is_valid_numeric(const char *str)
 {
 	int	error;
@@ -22,7 +22,7 @@ int	is_valid_numeric(const char *str)
 	return (!error);
 }
 
-// Verif si prochaine multiplication par 10 + digit cause depassement
+// Check if next multiplication by 10 + digit causes overrun
 static int	check_limits(long long res, int digit, int sign)
 {
 	if (sign == 1 && res > (LLONG_MAX - digit) / 10)
@@ -32,7 +32,7 @@ static int	check_limits(long long res, int digit, int sign)
 	return (0);
 }
 
-// Initialise indices et signe
+// Initialize indices and sign
 static int	init_parse(const char *str, int *i, int *sign)
 {
 	while (str[*i] == ' ' || str[*i] == '\t')
@@ -48,7 +48,7 @@ static int	init_parse(const char *str, int *i, int *sign)
 	return (1);
 }
 
-// Convertit en long long et detecte erreur
+// Converts to long long and detects error
 long long	ft_strtoll(const char *str, int *error)
 {
 	int			i;
@@ -74,7 +74,7 @@ long long	ft_strtoll(const char *str, int *error)
 	return (res * sign);
 }
 
-// builtin_exit : Gère la commande exit, avec validation des arguments
+// builtin_exit: Manages the exit command, with argument validation
 void	builtin_exit(char **cmd, t_shell *shell)
 {
 	pid_t	parent_pid;

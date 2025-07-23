@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:55:41 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/20 18:18:52 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/23 14:06:02 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static int	handle_syntax_errors(char **tmp, char *line, t_shell *shell)
 	return (0);
 }
 
-// Boucle principale du shell : lit et exécute les commandes
 void	start_shell_loop(t_shell *shell)
 {
 	char		*line;

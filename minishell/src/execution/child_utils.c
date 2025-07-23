@@ -6,14 +6,14 @@
 /*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:47:47 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/28 17:41:19 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/23 14:14:36 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Configure les redirections,duplique les bons descripteurs,
-// puis exécute la commande ds le processus fils
+// Configure redirections, duplicate the correct descriptors,
+// then execute the command in the child process
 void	fork_and_run_child(t_command *cmd, char **env, int prev_fd,
 		int pipe_fd[2])
 {
@@ -43,7 +43,7 @@ void	fork_and_run_child(t_command *cmd, char **env, int prev_fd,
 	_exit(local_status);
 }
 
-// Cree un tube de communication avec vérification d’erreur
+// Creates a communication tube with error checking
 void	create_pipe(int *pipe_fd)
 {
 	pipe_fd[0] = -1;
@@ -55,7 +55,7 @@ void	create_pipe(int *pipe_fd)
 	}
 }
 
-// Cree un new processus avec fork()
+// Create a new process with fork()
 pid_t	create_process(void)
 {
 	pid_t	pid;

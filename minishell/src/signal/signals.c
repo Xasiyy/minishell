@@ -6,13 +6,13 @@
 /*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:59:00 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/22 14:09:14 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/23 13:48:57 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Variable globale pr signaler une interruption
+// Global variable to signal an interruption
 volatile sig_atomic_t	g_signal = 0;
 
 void	sigint_interactive(int signo)
@@ -43,7 +43,7 @@ void	setup_interactive_signals(void)
 	g_signal = 0;
 }
 
-// Fonction appelee quand utilisateur envoie Ctrl+C (SIGINT)
+// Function called when user sends Ctrl+C (SIGINT)
 void	sigint_handler(int signo)
 {
 	(void)signo;
@@ -54,14 +54,14 @@ void	sigint_handler(int signo)
 	rl_redisplay();
 }
 
-// Handler pr SIGQUIT (Ctrl+\)
+// Handler for SIGQUIT (Ctrl+\)
 void	sigqquit_handler(int signo)
 {
 	(void)signo;
 	g_signal = 2;
 }
 
-// Initialise le comportement du shell face aux signaux
+// Initialize shell behavior in response to signals
 void	init_signals(void)
 {
 	signal(SIGINT, sigint_handler);

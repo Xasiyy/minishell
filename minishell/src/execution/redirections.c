@@ -3,23 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:28:25 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/20 15:54:44 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/23 14:09:15 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Affiche une erreur et quitte le programme si une redirection échoue
 void	exit_with_perror(char *filename)
 {
 	perror(filename);
 	exit(EXIT_FAILURE);
 }
 
-// Ouvre le bon fichier en fonction type de redirection et return descripteur
 int	get_fd_from_redir(t_redir *redir)
 {
 	int	fd;
@@ -37,7 +35,6 @@ int	get_fd_from_redir(t_redir *redir)
 	return (fd);
 }
 
-// Applique tts les redirections (entrée/sortie) d'une commande
 int	handle_redirections(t_command *cmd)
 {
 	t_redir	*redir;

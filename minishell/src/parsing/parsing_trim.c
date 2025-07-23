@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_trim.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 15:02:55 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/05/23 15:18:42 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/07/23 13:55:03 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// supprime les espaces en debut et fin de chaines
+// deletes spaces at the beginning and end of strings
 char	*trim_withespaces(const char *str)
 {
 	char	*end;
@@ -30,7 +30,6 @@ char	*trim_withespaces(const char *str)
 	return (cleaned);
 }
 
-// verifie si les quotes sont bien fermees
 int	has_unclosed_quotes(const char *str)
 {
 	char	quotes;

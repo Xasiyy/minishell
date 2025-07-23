@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_syntax.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 17:40:25 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/07/21 10:12:10 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/23 13:59:40 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	expect_filename(char **t, int *i)
 	return (0);
 }
 
-// Vérifie les erreurs spécifiques aux pipes
+// Checks for pipe-specific errors
 static int	check_pipe_block(char **t, int *i)
 {
 	if (t[*i + 1] && is_pipe(t[*i + 1]))
@@ -95,7 +95,7 @@ static int	handle_pipe_token(char **t, int *i)
 	return (0);
 }
 
-// Parcourt tous les tokens et vérifie la syntaxe
+// Scan all tokens and check syntax
 int	check_tokens(char **t)
 {
 	int	i;

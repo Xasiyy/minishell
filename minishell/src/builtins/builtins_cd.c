@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_cd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 10:31:50 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/19 21:59:12 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/23 14:21:14 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Gere et change reppertoire cd et met a jour PWD/OLDPWD
+// Manage and change cd directory and update PWD/OLDPWD
 int	builtin_cd(char **cmd)
 {
 	t_shell	*shell;
@@ -39,7 +39,7 @@ int	builtin_cd(char **cmd)
 	return (execute_cd(target, shell));
 }
 
-// Change repertoire ac chdir et met a jour variable d env
+// Change directory ac chdir and update variable d env
 int	execute_cd(char *target, t_shell *shell)
 {
 	char	*old_pwd;

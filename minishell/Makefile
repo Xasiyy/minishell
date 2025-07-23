@@ -41,7 +41,6 @@ SRCS = builtins/builtins_cd.c \
        execution/execution_child.c \
        execution/execution.c \
        execution/execve_handler.c \
-       execution/handle_redirections.c \
        execution/pipeline.c \
        execution/redirections.c \
        free/free_shell.c \

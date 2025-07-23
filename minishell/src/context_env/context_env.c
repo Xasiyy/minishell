@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   context_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:01:11 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/27 17:42:54 by abollia          ###   ########.fr       */
+/*   Updated: 2025/07/23 14:15:18 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Pr stocker ou recuperer le contexte global du shell
+// To store or retrieve the global shell context
 t_shell	*get_shell_context(t_shell *set_shell)
 {
 	static t_shell	*ctx = NULL;
@@ -22,7 +22,7 @@ t_shell	*get_shell_context(t_shell *set_shell)
 	return (ctx);
 }
 
-// Retrouver le pointeur vers le shell a partir d un champ env et t_shell
+// Find the shell pointer from an env and t_shell field
 t_shell	*get_shell_from_env(t_env *env)
 {
 	static t_shell	*shell_ptr = NULL;
@@ -33,7 +33,7 @@ t_shell	*get_shell_from_env(t_env *env)
 	return (shell_ptr);
 }
 
-// Compte le nmbr de chaînes ds un tableau de chaînes (ex: envp)
+// Count the number of strings in an array of strings (e.g. envp)
 static int	count_env(char **envp)
 {
 	int	i;
@@ -44,7 +44,7 @@ static int	count_env(char **envp)
 	return (i);
 }
 
-// Copie les variables d'environnement dans une structure t_env
+// Copy environment variables into a t_env structure
 t_env	*init_env(char **envp)
 {
 	t_env	*env;

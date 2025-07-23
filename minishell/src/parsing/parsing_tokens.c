@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_tokens.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 15:25:20 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/07/21 10:13:33 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/23 14:22:50 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ size_t	count_redir_pieces(char *t)
 	return (pieces);
 }
 
-// Extrai chaque mot ou chaine entre guillemet str et les ajoutes ds tokens
+// Extract each word or string btwn quotation marks str and add them to tokens
 void	fill_token(const char *str, char **tokens, int *i, int *tok_i)
 {
 	int		start;
@@ -66,7 +66,6 @@ void	fill_token(const char *str, char **tokens, int *i, int *tok_i)
 	}
 }
 
-// split les tokens entre eux
 char	**split_tokens(const char *str)
 {
 	char	**tokens;

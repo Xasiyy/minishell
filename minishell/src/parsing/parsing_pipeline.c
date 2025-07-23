@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_pipeline.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 17:39:13 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/07/21 09:59:52 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/23 14:02:58 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Remplit un tableau de cmd, a partir des partie separe d un pipeline
+// Fill a cmd array with the separate parts of a pipeline
 static void	fill_commands(t_command **cmds, char **parts, t_shell *shell)
 {
 	int		i;
@@ -35,7 +35,7 @@ static void	fill_commands(t_command **cmds, char **parts, t_shell *shell)
 	cmds[i] = NULL;
 }
 
-// Analyse une ligne cmd contenant un pipeline et construit structure
+// Parse a cmd line containing a pipeline and build structure
 t_pipeline	*parse_pipeline(char *input, t_shell *shell)
 {
 	t_command	**cmds;
@@ -55,7 +55,7 @@ t_pipeline	*parse_pipeline(char *input, t_shell *shell)
 	return (allocate_pipeline(parts, cmds));
 }
 
-// Alloue une structure pipeline à partir des cmd parsées
+// Allocate a pipeline structure from parsed cmd's
 t_pipeline	*allocate_pipeline(char **parts, t_command **cmds)
 {
 	t_pipeline	*pipeline;

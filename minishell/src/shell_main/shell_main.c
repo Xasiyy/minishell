@@ -6,13 +6,13 @@
 /*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:30:03 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/28 17:42:37 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/23 13:49:43 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Cree processus pr executer 2 commande relie par un pipe
+// Create a process to execute 2 commands linked by a pipe
 void	exec_cmds(t_files files, int pipe_fd[2], t_command *cmd, char **env)
 {
 	pid_t	pid;
@@ -31,7 +31,7 @@ void	exec_cmds(t_files files, int pipe_fd[2], t_command *cmd, char **env)
 	waitpid(pid, NULL, 0);
 }
 
-// Configure et gere lexecution d un pipeline de commandes
+// Configure and manage the execution of a command pipeline
 void	minishell(t_files files, char *input, char **env)
 {
 	t_shell		*shell;

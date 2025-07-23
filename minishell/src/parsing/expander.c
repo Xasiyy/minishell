@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:40:04 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/21 09:40:48 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/23 14:05:56 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Gère l'expansion de $? (code de sortie)
+// Handles $? expansion (exit code)
 static void	handle_exit_status(char **res, int *i, int exit_code)
 {
 	char	*exit_status;
@@ -22,7 +22,7 @@ static void	handle_exit_status(char **res, int *i, int exit_code)
 	(*i)++;
 }
 
-// quote est inutilisé donc on le marque comme tel
+// quote is unused, so we mark it as such
 static void	handle_dollar(char *str, int *i, t_shell *sh, char **res)
 {
 	char	*expanded;
@@ -38,7 +38,7 @@ static void	handle_dollar(char *str, int *i, t_shell *sh, char **res)
 	}
 }
 
-// Fait l'expansion des variables dans une chaîne ($VAR, $?)
+// Expands variables in a string ($VAR, $?)
 char	*expand_variables(char *str, int quote_type, t_shell *shell)
 {
 	char	*res;

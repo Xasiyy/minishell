@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins_env_cd.c                                  :+:      :+:    :+:   */
+/*   builtins_env.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:21:29 by ncullu            #+#    #+#             */
-/*   Updated: 2025/05/27 12:54:34 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/07/23 14:19:56 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Affiche le chemin absolu du rép courant
+// Displays the absolute path of the current repeat
 int	builtin_pwd(void)
 {
 	char	cwd[1024];
@@ -27,7 +27,7 @@ int	builtin_pwd(void)
 	return (1);
 }
 
-// Affiche ttes les variables d’env actuelles
+// Displays all current env variables
 int	builtin_env(char **env)
 {
 	int	i;
@@ -42,7 +42,7 @@ int	builtin_env(char **env)
 	return (0);
 }
 
-// Supprime une variable d’env
+// Deletes an env variable
 int	builtin_unset(char **cmd, t_env *env_struct)
 {
 	int	i;
@@ -60,7 +60,7 @@ int	builtin_unset(char **cmd, t_env *env_struct)
 	return (0);
 }
 
-// Verifie si variabable d env existe deja
+// Check if variabable d env already exists
 int	env_var_exists(char **env, const char *key)
 {
 	int		i;

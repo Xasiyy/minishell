@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_exit_parent_child.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:06:10 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/17 14:18:08 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/07/23 14:19:19 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Verif si cmd "exit" trp args
 int	is_too_many_args(char **cmd, t_shell *shell)
 {
 	if (cmd[1] && cmd[2])
@@ -24,7 +23,7 @@ int	is_too_many_args(char **cmd, t_shell *shell)
 	return (0);
 }
 
-// Verif si arg est nbr valide, sinn Q shell
+// Check if arg is nbr valid, sinn Q shell
 void	check_numeric_exit(char *arg, t_shell *shell, long long *exit_code)
 {
 	int	error;
@@ -46,7 +45,7 @@ void	check_numeric_exit(char *arg, t_shell *shell, long long *exit_code)
 	}
 }
 
-// Gere comportement cmd "exit" ds shell principale
+// Gere behavior cmd “exit” ds main shell
 void	handle_exit_parent(char **cmd, t_shell *shell)
 {
 	long long	exit_code;
@@ -59,7 +58,7 @@ void	handle_exit_parent(char **cmd, t_shell *shell)
 	clean_and_exit(shell, (unsigned char)exit_code);
 }
 
-// Gere cmd "exit" ds enfant
+// Gere cmd “exit” ds child
 void	handle_exit_child(char **cmd, t_shell *shell)
 {
 	long long	code;

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_echo.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:25:51 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/17 14:11:42 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/07/23 14:20:08 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Affiche les args, ac ou sans saut a ligne (-n)
+// Display args, ac or without line feed (-n)
 int	builtin_echo(char **cmd)
 {
 	int	i;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_redirection.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 15:28:04 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/07/21 10:54:49 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/23 14:00:33 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	validate_redirection_params(t_redir_type type,
 	return (1);
 }
 
-// Détecte le type de redirection et extrait le nom de fichier
+// Detects the type of redirection and extracts the file name
 void	handle_redirection(char **tokens, int *i, t_command *cmd)
 {
 	t_redir_type	type;
@@ -78,7 +78,7 @@ void	handle_redirection(char **tokens, int *i, t_command *cmd)
 	(*i)++;
 }
 
-// Retourne le type de redirection selon le token
+// Returns the type of redirection according to the token
 t_redir_type	get_redirection_type(char *t)
 {
 	if (t[0] == '<' && t[1] == '<')
@@ -92,7 +92,7 @@ t_redir_type	get_redirection_type(char *t)
 	return (-1);
 }
 
-// Extrait le nom du fichier pour la redirection
+// Extract file name for redirection
 char	*extract_redirection_filename(char **tokens, int *i)
 {
 	char	*t;

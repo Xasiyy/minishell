@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   segmentation_quotes.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 13:43:54 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/07/21 10:22:59 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/23 14:23:20 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Cree new segment av une valeur et un type de quote
+// Create new segment with a value and a quote type
 t_segment	*new_segment(char *value, t_quote_type quote)
 {
 	t_segment	*seg;
@@ -26,7 +26,7 @@ t_segment	*new_segment(char *value, t_quote_type quote)
 	return (seg);
 }
 
-// Ajoute un segment a la fin dune liste chainee de segment
+// Add a segment to the end of a chained list of segments
 void	append_segment(t_segment **list, t_segment *new_seg)
 {
 	t_segment	*tmp;
@@ -42,7 +42,7 @@ void	append_segment(t_segment **list, t_segment *new_seg)
 	tmp->next = new_seg;
 }
 
-// Gere un segment entre guillemet (simple ou double) puis ajoute liste
+// Manage a segment between quotation marks (single or double) then add list
 void	handle_segment_quote(const char *input, int *i,
 		t_segment **segments)
 {
@@ -83,7 +83,7 @@ static void	handle_quouted_segment(const char *input, int *i,
 		(*i)++;
 }
 
-// Decoupe chaine en segment selon les guillemets (simple double ou aucun)
+// Split string into segments according to quotation marks
 t_segment	*split_segments(const char *input)
 {
 	t_segment	*segments;

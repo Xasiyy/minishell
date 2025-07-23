@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_check.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:32:43 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/14 11:51:21 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/23 14:05:18 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Vérifie si la cmd commence par un token invalide (ex: |)
+// Checks if cmd starts with an invalid token (e.g. |)
 static int	is_invalid_start(char **tokens)
 {
 	if (!tokens || !tokens[0])
@@ -30,7 +30,7 @@ static int	is_invalid_start(char **tokens)
 	return (0);
 }
 
-// Vérif si la cmd se termine par un token invalide (ex: |)
+// Check if cmd ends with an invalid token (e.g. |)
 static int	is_invalid_end(char **tokens)
 {
 	int	i;
@@ -55,7 +55,7 @@ static int	is_invalid_end(char **tokens)
 	return (0);
 }
 
-// Vérif la syntaxe pipes redirections
+// Check pipe syntax redirections
 static int	check_pipes_and_redirs(char **tokens)
 {
 	int	i;
@@ -83,7 +83,7 @@ static int	check_pipes_and_redirs(char **tokens)
 	return (0);
 }
 
-// Vérif les erreurs de syntaxe dans les tokens
+// Check tokens for syntax errors
 int	syntax_error(char **tokens)
 {
 	if (is_invalid_start(tokens))
@@ -97,7 +97,7 @@ int	syntax_error(char **tokens)
 	return (0);
 }
 
-// Sup les args vides ("") de la liste des argts d'une cmd
+// Sup empty args (“”) from the list of argts in a cmd
 void	remove_empty_args(t_command *cmd)
 {
 	int		i;

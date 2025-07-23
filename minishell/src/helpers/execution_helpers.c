@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   execution_helpers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:25:48 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/20 16:16:40 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/23 14:07:34 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Redirection ds le processus enfant (dup2 vers stdout)
+// Redirect to child process (dup2 to stdout)
 void	setup_child_pipes(int fd_in, int *pipe_fd)
 {
 	if (fd_in != -1)
@@ -27,7 +27,7 @@ void	setup_child_pipes(int fd_in, int *pipe_fd)
 	safe_close(&pipe_fd[1]);
 }
 
-// Execute cmd ds le processus enfant
+// Execute cmd in child
 void	child_process(t_command *cmd, char **env, int *exit_status)
 {
 	t_shell	*shell;
@@ -47,7 +47,7 @@ void	child_process(t_command *cmd, char **env, int *exit_status)
 	exit(*exit_status);
 }
 
-// Redicrection ds le processus parent (dup2 vers stdin)
+// Redirect to parent process (dup2 to stdin)
 void	setup_parent_pipes(int fd_out, int *pipe_fd)
 {
 	if (dup2(pipe_fd[0], STDIN_FILENO) == -1)
@@ -59,7 +59,6 @@ void	setup_parent_pipes(int fd_out, int *pipe_fd)
 	safe_close(&pipe_fd[1]);
 }
 
-// Attend la fin d un processus enfant
 static void	wait_child(int *exit_status)
 {
 	int	status;
@@ -71,7 +70,7 @@ static void	wait_child(int *exit_status)
 		*exit_status = 1;
 }
 
-// Gere un processus parent pr une cmd
+// Manage a parent process for a cmd
 void	parent_process(t_command *cmd, char **env, int *exit_status)
 {
 	pid_t	pid;

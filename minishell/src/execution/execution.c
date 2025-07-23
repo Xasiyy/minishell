@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:59:25 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/20 16:06:43 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/23 14:13:02 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <errno.h>
 #include <sys/stat.h>
 
-// Gère l'exécution d'une commande (builtin ou externe)
+// Manages command execution (builtin or external)
 void	execute_command(t_command *cmd, char **env, int *exit_status)
 {
 	int	save_in;
@@ -38,7 +38,7 @@ void	execute_command(t_command *cmd, char **env, int *exit_status)
 	parent_process(cmd, env, exit_status);
 }
 
-// Exécute un builtin nécessitant un fork
+// Executes a builtin requiring a fork
 void	execute_external_builtin(char **args, char **env, int *exit_status)
 {
 	pid_t	pid;
@@ -90,7 +90,7 @@ void	execute_external(t_command *cmd, char **env, int *exit_status)
 	}
 }
 
-// Gère le processus parent après un fork
+// Manage the parent process after a fork
 void	handle_parent_process(pid_t pid, int *status, int *exit_status)
 {
 	t_shell	*shell;
@@ -117,7 +117,7 @@ void	handle_parent_process(pid_t pid, int *status, int *exit_status)
 	shell->last_exit_status = *exit_status;
 }
 
-// Exécute chaque commande de la liste chaînée
+// Execute each command in the linked list
 void	execute_commands(t_command *cmd_list, t_env *env)
 {
 	int		exit_status;

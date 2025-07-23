@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   env_helpers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 16:12:09 by ncullu            #+#    #+#             */
-/*   Updated: 2025/05/21 16:14:11 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/07/23 14:08:11 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Recupere la valeur d une variable d environnemement
+// Recovers the value of an environment variable
 char	*get_env_value(char **env, const char *var)
 {
 	size_t	len;
@@ -32,7 +32,7 @@ char	*get_env_value(char **env, const char *var)
 	return (NULL);
 }
 
-// récupère la variable d'enviro PATH à partir de liste variables d'enviro
+// retrieves PATH enviro variable from enviro variable list
 char	*find_path_in_env(char **env)
 {
 	if (!env)
@@ -46,7 +46,7 @@ char	*find_path_in_env(char **env)
 	return (NULL);
 }
 
-// Affiche erreur
+// print error
 void	ft_error(char *msg)
 {
 	perror(msg);

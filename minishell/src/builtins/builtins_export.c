@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_export.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:23:34 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/27 16:10:43 by abollia          ###   ########.fr       */
+/*   Updated: 2025/07/23 14:17:34 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Ajoute ou affiche variable d env ac export
+// Add or display variable d'env ac export
 int	builtin_export(char **cmd, t_env *env_struct)
 {
 	if (!cmd[1])
@@ -23,7 +23,7 @@ int	builtin_export(char **cmd, t_env *env_struct)
 	return (export_process_args(cmd, env_struct));
 }
 
-// Traite chaque argument passé à export
+// Process each argument passed to export
 int	export_process_args(char **cmd, t_env *env_struct)
 {
 	char	*equal;
@@ -52,7 +52,7 @@ int	export_process_args(char **cmd, t_env *env_struct)
 	return (err);
 }
 
-// Gere le cas ou valeur est incluse ds export VAR=value
+// Handles the case where value is included in export VAR=value
 int	handle_export_with_value(t_env *env_struct, char *arg, char *equal)
 {
 	char	*key;
@@ -78,7 +78,7 @@ int	handle_export_with_value(t_env *env_struct, char *arg, char *equal)
 	return (status != 0);
 }
 
-// Vérifie si la cle d une variable d env est valide
+// Checks whether the key of an env variable is valid
 int	is_valid_identifier(const char *str)
 {
 	int	i;
