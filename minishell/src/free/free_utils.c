@@ -6,7 +6,7 @@
 /*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:39:47 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/23 14:08:37 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/23 17:24:33 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void	free_redirections(t_redir *redir)
 	while (redir)
 	{
 		tmp = redir->next;
-		free(redir->filename);
+		if (redir->filename)
+			free(redir->filename);
 		free(redir);
 		redir = tmp;
 	}

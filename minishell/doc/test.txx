@@ -1,0 +1,12 @@
+bin
+doc
+ft_printf
+get_next_line
+include
+libft
+Makefile
+minishell_tester
+obj
+src
+test.txt
+valgrind.supp
