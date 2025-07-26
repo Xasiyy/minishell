@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:46:34 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/23 21:24:05 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/26 15:24:49 by abollia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	free_shell(t_shell *shell, int force_env)
 void	clean_and_exit(t_shell *shell, int exit_code)
 {
 	free_shell(shell, 1);
+	write(1, "exit\n", 5);
 	exit(exit_code);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_exit_parent_child.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:06:10 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/23 14:19:19 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/26 15:38:55 by abollia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	is_too_many_args(char **cmd, t_shell *shell)
 {
-	if (cmd[1] && cmd[2])
+	if ((is_valid_numeric(cmd[1]) && is_valid_numeric(cmd[2]))
+		|| (is_valid_numeric(cmd[1]) && !is_valid_numeric(cmd[2])))
 	{
 		ft_putstr_fd("exit: too many arguments\n", 2);
 		shell->last_exit_status = 1;
