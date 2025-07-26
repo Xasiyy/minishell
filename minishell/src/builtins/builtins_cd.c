@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_cd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 10:31:50 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/23 14:21:14 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/26 15:13:29 by abollia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ int	builtin_cd(char **cmd)
 		return (ft_putendl_fd("cd: too many arguments", 2), 1);
 	if (!cmd[1] || ft_strcmp(cmd[1], "~") == 0)
 	{
-		target = getenv("HOME");
+		target = get_env_value(shell->env->envp, "HOME");
 		if (!target)
 			return (ft_putendl_fd("cd: HOME not set", 2), 1);
 	}
 	else if (ft_strcmp(cmd[1], "-") == 0)
 	{
-		target = getenv("OLDPWD");
+		target = get_env_value(shell->env->envp, "OLDPWD");
 		if (!target)
 			return (ft_putendl_fd("cd : OLDPWD not set", 2), 1);
 		ft_putendl_fd(target, 1);
