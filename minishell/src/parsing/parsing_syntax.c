@@ -26,15 +26,14 @@ int	expect_filename(char **t, int *i)
 
 	if (!t)
 		return (1);
+	if (!t[*i + 1])
+		return (print_unexpected(NULL), 1);
 	(*i)++;
 	next = t[*i];
 	if (!next)
 	{
-		if (!t[*i + 1])
-		{
-			if (ft_strcmp(t[*i - 1], "<<") == 0)
-				return (0);
-		}
+		if (*i > 0 && t[*i - 1] && !ft_strcmp(t[*i - 1], "<<"))
+			return (0);
 		print_unexpected(NULL);
 		return (1);
 	}
