@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_helpers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:25:48 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/23 14:07:34 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/27 13:11:40 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,16 @@ void	setup_parent_pipes(int fd_out, int *pipe_fd)
 
 static void	wait_child(int *exit_status)
 {
-	int	status;
+	int		status;
+	pid_t	pid;
 
-	waitpid(-1, &status, 0);
+	pid = waitpid(-1, &status, 0);
+	handle_parent_process(pid, &status, exit_status);
+/* 	waitpid(-1, &status, 0);
 	if (WIFEXITED(status))
 		*exit_status = WEXITSTATUS(status);
 	else
-		*exit_status = 1;
+		*exit_status = 1; */
 }
 
 // Manage a parent process for a cmd
