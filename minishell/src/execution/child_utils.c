@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:47:47 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/23 14:14:36 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/27 18:09:59 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,16 @@ void	fork_and_run_child(t_command *cmd, char **env, int prev_fd,
 		exit(1);
 	}
 	local_status = 0;
-	execute_command(cmd, env, &local_status);
+
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+	if (is_builtin(cmd->args))
+		execute_command(cmd, env, &local_status);
+	else
+	{
+		execute_child(cmd, env);
+		local_status = 1;
+	}
 	free_shell(shell, 1);
 	_exit(local_status);
 }

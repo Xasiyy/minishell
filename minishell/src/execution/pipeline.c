@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:36:17 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/23 14:21:54 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/27 17:57:42 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,14 @@ void	wait_for_all_children(t_shell *shell, pid_t last_pid)
 {
 	int		status;
 	pid_t	pid;
+	int		quit_signal_received;
 
+	quit_signal_received = 0;
 	pid = wait(&status);
 	while (pid > 0)
 	{
+		if (WIFSIGNALED(status) && WTERMSIG(status) == SIGQUIT)
+			quit_signal_received = 1;
 		if (pid == last_pid)
 		{
 			if (WIFEXITED(status))
@@ -115,4 +119,6 @@ void	wait_for_all_children(t_shell *shell, pid_t last_pid)
 		}
 		pid = wait(&status);
 	}
+ 	if (quit_signal_received)
+		ft_putstr_fd("Quit\n", 2);
 }
