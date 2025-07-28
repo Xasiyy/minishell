@@ -6,7 +6,7 @@
 /*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 20:35:41 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/07/20 11:52:37 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/28 12:42:06 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,22 @@ char	*generate_tmp_filename(void)
 	return (result);
 }
 
+char	*expand_heredoc(char *line, char *delimiter)
+{
+	char	*expanded_line;
+	t_shell	*shell;
+
+	if (ft_strncmp(line, delimiter, ft_strlen(delimiter)) == 0 && line[ft_strlen(delimiter)] == '\0')
+		return (NULL);
+	shell = get_shell_context(NULL);
+	expanded_line = expand_variables(line, QUOTE_NONE, shell);
+	return (expanded_line);
+}
+
 int	loop_heredoc(int fd, char *delimiter)
 {
 	char	*line;
+	char	*expanded_line;
 
 	g_signal = 0;
 	while (1)
@@ -40,16 +53,16 @@ int	loop_heredoc(int fd, char *delimiter)
 				free(line);
 			return (1);
 		}
-		if (ft_strncmp(line, delimiter,
-				ft_strlen(delimiter)) == 0
-			&& line[ft_strlen(delimiter)] == '\0')
+		expanded_line = expand_heredoc(line, delimiter);
+		if (!expanded_line)
 		{
 			free(line);
 			break ;
 		}
-		write(fd, line, ft_strlen(line));
+		write(fd, expanded_line, ft_strlen(expanded_line));
 		write(fd, "\n", 1);
 		free(line);
+		free(expanded_line);
 	}
 	return (0);
 }

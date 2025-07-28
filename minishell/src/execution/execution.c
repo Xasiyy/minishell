@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:59:25 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/27 18:03:12 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/28 12:28:50 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,8 @@ void	handle_parent_process(pid_t pid, int *status, int *exit_status)
 	if (WIFSIGNALED(*status))
 	{
 		sig = WTERMSIG(*status);
-/* 		if (sig == SIGQUIT)
-			ft_putstr_fd("Quit\n", 2); */
+		if (sig == SIGQUIT)
+			ft_putstr_fd("Quit\n", 2);
 		if (sig == SIGINT)
 			ft_putchar_fd('\n', 1);
 		*exit_status = 128 + sig;
