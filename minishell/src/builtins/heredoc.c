@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 20:35:41 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/07/28 12:42:06 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/29 11:36:49 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,6 @@ char	*generate_tmp_filename(void)
 	result = ft_strjoin("/tmp/minishell_heredoc_", num_str);
 	free(num_str);
 	return (result);
-}
-
-char	*expand_heredoc(char *line, char *delimiter)
-{
-	char	*expanded_line;
-	t_shell	*shell;
-
-	if (ft_strncmp(line, delimiter, ft_strlen(delimiter)) == 0 && line[ft_strlen(delimiter)] == '\0')
-		return (NULL);
-	shell = get_shell_context(NULL);
-	expanded_line = expand_variables(line, QUOTE_NONE, shell);
-	return (expanded_line);
 }
 
 int	loop_heredoc(int fd, char *delimiter)

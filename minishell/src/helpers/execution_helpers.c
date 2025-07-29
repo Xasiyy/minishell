@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_helpers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:25:48 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/27 17:30:48 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/29 11:35:29 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,6 @@ static void	wait_child(int *exit_status)
 
 	pid = waitpid(-1, &status, 0);
 	handle_parent_process(pid, &status, exit_status);
-/* 	waitpid(-1, &status, 0);
-	if (WIFEXITED(status))
-		*exit_status = WEXITSTATUS(status);
-	else
-		*exit_status = 1; */
 }
 
 // Manage a parent process for a cmd

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmailc.com>          +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:36:17 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/27 17:57:42 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/29 11:34:59 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,6 @@ void	wait_for_all_children(t_shell *shell, pid_t last_pid)
 		}
 		pid = wait(&status);
 	}
- 	if (quit_signal_received)
+	if (quit_signal_received)
 		ft_putstr_fd("Quit\n", 2);
 }

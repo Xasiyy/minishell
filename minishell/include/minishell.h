@@ -6,7 +6,7 @@
 /*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 18:00:52 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/23 21:37:58 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/29 11:37:33 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,8 @@ int								is_valid_identifier(const char *str);
 // builtins_utils.c
 int								is_safe_in_parent(t_command *cmd);
 int								is_safe_in_executed_parent(char *name);
+char							*expand_heredoc(char *line, char *delimiter);
+
 // heredoc.c
 char							*handle_heredoc(char *delimiter);
 char							*generate_tmp_filename(void);
