@@ -6,7 +6,7 @@
 /*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:55:41 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/26 00:13:27 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/29 18:18:46 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argc;
 	(void)argv;
+	rl_catch_signals = 0;
+	rl_catch_sigwinch = 0;
 	shell = malloc(sizeof(t_shell));
 	ft_bzero(shell, sizeof(t_shell));
 	if (!shell)
