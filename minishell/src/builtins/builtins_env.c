@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_env.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:21:29 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/23 14:19:56 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/30 11:10:57 by abollia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,11 @@ int	builtin_env(char **env)
 	i = 0;
 	while (env[i])
 	{
-		write(1, env[i], ft_strlen(env[i]));
-		write(1, "\n", 1);
+		if (ft_strchr(env[i], '='))
+		{
+			write(1, env[i], ft_strlen(env[i]));
+			write(1, "\n", 1);
+		}
 		i++;
 	}
 	return (0);

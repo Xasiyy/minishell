@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   file_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:57:08 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/28 17:42:45 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/30 13:02:00 by abollia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Ouvre un fichier en lecture et return son descripteur
 int	open_input_file(const char *file)
 {
 	int	fd;
@@ -28,7 +27,6 @@ int	open_input_file(const char *file)
 	return (fd);
 }
 
-// Ouvre\cree un fichier en ecriture ac 0644
 int	open_output_file(const char *file)
 {
 	int	fd;
@@ -44,7 +42,6 @@ int	open_output_file(const char *file)
 	return (fd);
 }
 
-// Ferme descripteur de fichier et termine programme
 void	cleanup_and_exit(int fd, int *pipe_fd)
 {
 	if (fd != -1)
