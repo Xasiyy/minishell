@@ -6,13 +6,12 @@
 /*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:43:36 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/01 16:07:19 by abollia          ###   ########.fr       */
+/*   Updated: 2025/07/30 12:59:39 by abollia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Crée une copie de l'env sans la variable correspondant à la clé donnée
 static char	**create_env_without_key(char **env, const char *key)
 {
 	int		i;
@@ -41,7 +40,6 @@ static char	**create_env_without_key(char **env, const char *key)
 	return (new_env);
 }
 
-// Supprime une variable d'env par sa clé
 int	unset_env_var(char ***env, const char *key)
 {
 	int		i;

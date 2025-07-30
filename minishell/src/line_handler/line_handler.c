@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:51:42 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/23 21:40:19 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/30 13:00:28 by abollia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static void	free_pipeline(t_pipeline *pipeline)
 	free(pipeline);
 }
 
-//parsing + exécution
 void	handle_line(char *line, t_shell *shell)
 {
 	if (!handle_quotes_and_history(line, shell))

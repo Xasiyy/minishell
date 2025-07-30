@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   env_display.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:41:42 by ncullu            #+#    #+#             */
-/*   Updated: 2025/06/16 18:09:21 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/30 12:59:33 by abollia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// pr trier ordre alpha variable d env
 void	sort_env(char **env)
 {
 	int		i;
@@ -40,7 +39,6 @@ void	sort_env(char **env)
 	}
 }
 
-// Affiche une ligne de variable dans le format export
 static void	print_sorted_line(char *var)
 {
 	char	*equal_pos;
@@ -56,7 +54,6 @@ static void	print_sorted_line(char *var)
 		printf("declare -x %s\n", var);
 }
 
-// Affiche l'environnement trié dans le format export
 void	print_sorted_env(char **env)
 {
 	char	**sorted;

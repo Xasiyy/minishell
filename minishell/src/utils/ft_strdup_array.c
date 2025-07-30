@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup_array.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncullu <ncullu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 08:47:34 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/05/21 16:20:11 by ncullu           ###   ########.fr       */
+/*   Updated: 2025/07/30 13:02:08 by abollia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Libère un tableau partiellement alloué (jusqu'à l'index i)
 static void	free_partial_array(char **arr, int i)
 {
 	while (i > 0)
@@ -20,7 +19,6 @@ static void	free_partial_array(char **arr, int i)
 	free(arr);
 }
 
-// Duplique un tableau de chaînes de caractères
 char	**ft_strdup_array(char **src)
 {
 	int		i;
