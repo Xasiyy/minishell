@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 12:12:12 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/20 12:05:21 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/30 11:03:05 by abollia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Fait une copie complète du tableau d'env existant
+// Make a complete copy of the existing env array
 char	**copy_env(char **envp)
 {
 	int		i;
@@ -42,7 +42,7 @@ char	**copy_env(char **envp)
 	return (copy);
 }
 
-// Ajoute une variable d'environnement key=value à l'env
+// Add an env variable
 int	add_env_entry(char ***env, const char *key, const char *value)
 {
 	int		count;
@@ -70,7 +70,7 @@ int	add_env_entry(char ***env, const char *key, const char *value)
 	return (0);
 }
 
-// Copie l'ancien tableau env dans le nouveau
+// Copy the former array into a new one
 int	copy_old_env(char **new_env, char **old_env, int count)
 {
 	int	i;
@@ -91,7 +91,7 @@ int	copy_old_env(char **new_env, char **old_env, int count)
 	return (0);
 }
 
-// Met à jour une variable d'env ou l'ajoute si elle n'existe pas
+// Update the env variable or add it if inexistant
 int	set_env_var(char ***env, const char *key, const char *value)
 {
 	int		i;
@@ -104,8 +104,7 @@ int	set_env_var(char ***env, const char *key, const char *value)
 	i = 0;
 	while ((*env)[i])
 	{
-		if (ft_strncmp((*env)[i], key, key_len) == 0
-			&& (*env)[i][key_len] == '=')
+		if (!ft_strncmp((*env)[i], key, key_len))
 		{
 			free((*env)[i]);
 			new_var = make_env_entry(key, value);
