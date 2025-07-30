@@ -6,7 +6,7 @@
 /*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:06:10 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/26 15:50:23 by abollia          ###   ########.fr       */
+/*   Updated: 2025/07/30 12:59:02 by abollia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	check_numeric_exit(char *arg, t_shell *shell, long long *exit_code)
 	}
 }
 
-// Gere behavior cmd “exit” ds main shell
 void	handle_exit_parent(char **cmd, t_shell *shell)
 {
 	long long	exit_code;
@@ -63,7 +62,6 @@ void	handle_exit_parent(char **cmd, t_shell *shell)
 	clean_and_exit(shell, (unsigned char)exit_code);
 }
 
-// Gere cmd “exit” ds child
 void	handle_exit_child(char **cmd, t_shell *shell)
 {
 	long long	code;
