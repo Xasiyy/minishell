@@ -6,7 +6,7 @@
 /*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:05:27 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/23 14:16:54 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/29 11:36:53 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,17 @@ int	is_safe_in_executed_parent(char *name)
 	if (ft_strcmp(name, "unset") == 0)
 		return (1);
 	return (0);
+}
+
+char	*expand_heredoc(char *line, char *delimiter)
+{
+	char	*expanded_line;
+	t_shell	*shell;
+
+	if (ft_strncmp(line, delimiter, ft_strlen(delimiter)) == 0
+		&& line[ft_strlen(delimiter)] == '\0')
+		return (NULL);
+	shell = get_shell_context(NULL);
+	expanded_line = expand_variables(line, QUOTE_NONE, shell);
+	return (expanded_line);
 }

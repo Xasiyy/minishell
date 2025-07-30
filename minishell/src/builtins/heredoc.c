@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 20:35:41 by asdiallo          #+#    #+#             */
-/*   Updated: 2025/07/20 11:52:37 by xasiy            ###   ########.fr       */
+/*   Updated: 2025/07/29 11:36:49 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	*generate_tmp_filename(void)
 int	loop_heredoc(int fd, char *delimiter)
 {
 	char	*line;
+	char	*expanded_line;
 
 	g_signal = 0;
 	while (1)
@@ -40,16 +41,16 @@ int	loop_heredoc(int fd, char *delimiter)
 				free(line);
 			return (1);
 		}
-		if (ft_strncmp(line, delimiter,
-				ft_strlen(delimiter)) == 0
-			&& line[ft_strlen(delimiter)] == '\0')
+		expanded_line = expand_heredoc(line, delimiter);
+		if (!expanded_line)
 		{
 			free(line);
 			break ;
 		}
-		write(fd, line, ft_strlen(line));
+		write(fd, expanded_line, ft_strlen(expanded_line));
 		write(fd, "\n", 1);
 		free(line);
+		free(expanded_line);
 	}
 	return (0);
 }

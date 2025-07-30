@@ -6,21 +6,15 @@
 /*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:47:47 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/23 14:14:36 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/29 13:14:33 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Configure redirections, duplicate the correct descriptors,
-// then execute the command in the child process
-void	fork_and_run_child(t_command *cmd, char **env, int prev_fd,
-		int pipe_fd[2])
+static int	setup_child_redirections(t_command *cmd, int prev_fd,
+									int pipe_fd[2])
 {
-	t_shell	*shell;
-	int		local_status;
-
-	shell = get_shell_context(NULL);
 	if (prev_fd != -1)
 	{
 		dup2(prev_fd, STDIN_FILENO);
@@ -33,12 +27,34 @@ void	fork_and_run_child(t_command *cmd, char **env, int prev_fd,
 		safe_close(&pipe_fd[1]);
 	}
 	if (handle_redirections(cmd) == -1)
+		return (-1);
+	return (0);
+}
+
+// Configure redirections, duplicate the correct descriptors,
+// then execute the command in the child process
+void	fork_and_run_child(t_command *cmd, char **env, int prev_fd,
+		int pipe_fd[2])
+{
+	t_shell	*shell;
+	int		local_status;
+
+	shell = get_shell_context(NULL);
+	if (setup_child_redirections(cmd, prev_fd, pipe_fd) == -1)
 	{
 		free_shell(shell, 1);
 		exit(1);
 	}
 	local_status = 0;
-	execute_command(cmd, env, &local_status);
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+	if (is_builtin(cmd->args))
+		execute_command(cmd, env, &local_status);
+	else
+	{
+		execute_child(cmd, env);
+		local_status = 1;
+	}
 	free_shell(shell, 1);
 	_exit(local_status);
 }

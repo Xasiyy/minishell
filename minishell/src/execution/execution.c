@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
+/*   By: xasiy <xasiy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:59:25 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/23 21:16:35 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/28 12:28:50 by xasiy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	handle_parent_process(pid_t pid, int *status, int *exit_status)
 		sig = WTERMSIG(*status);
 		if (sig == SIGQUIT)
 			ft_putstr_fd("Quit\n", 2);
-		else if (sig == SIGINT)
+		if (sig == SIGINT)
 			ft_putchar_fd('\n', 1);
 		*exit_status = 128 + sig;
 	}

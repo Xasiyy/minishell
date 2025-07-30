@@ -6,7 +6,7 @@
 /*   By: abollia <abollia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:51:42 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/30 13:00:28 by abollia          ###   ########.fr       */
+/*   Updated: 2025/07/30 13:20:37 by abollia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,6 @@ void	execute_pipeline_or_single(t_shell *shell)
 {
 	if (!shell->pipeline || !shell->pipeline->commands)
 		return ;
-	if (handle_redirections(shell->pipeline->commands) == -1)
-	{
-		shell->last_exit_status = 1;
-		return ;
-	}
 	if (shell->pipeline->count > 1)
 		execute_pipeline(shell->pipeline, shell->env->envp);
 	else
