@@ -6,7 +6,7 @@
 /*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:25:48 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/29 11:35:29 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/29 18:43:48 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ void	parent_process(t_command *cmd, char **env, int *exit_status)
 
 	shell = get_shell_context(NULL);
 	if (cmd->args && cmd->args[0] && ft_strcmp(cmd->args[0], "exit") == 0)
-		return (builtin_exit(cmd->args, shell), (void)0);
+		return (builtin_exit(cmd->args, shell),
+			*exit_status = shell->last_exit_status, (void)0);
 	if (is_builtin(cmd->args) && is_safe_in_executed_parent(cmd->args[0])
 		&& is_safe_in_parent(cmd))
 	{

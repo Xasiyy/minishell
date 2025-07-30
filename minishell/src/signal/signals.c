@@ -6,7 +6,7 @@
 /*   By: asdiallo <asiya040906@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:59:00 by ncullu            #+#    #+#             */
-/*   Updated: 2025/07/23 13:48:57 by asdiallo         ###   ########.fr       */
+/*   Updated: 2025/07/29 18:18:08 by asdiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,13 @@ void	setup_interactive_signals(void)
 // Function called when user sends Ctrl+C (SIGINT)
 void	sigint_handler(int signo)
 {
+	t_shell	*shell;
+
 	(void)signo;
 	g_signal = SIGINT_NORMAL;
+	shell = get_shell_context(NULL);
+	if (shell)
+		shell->last_exit_status = 130;
 	write(1, "^C\n", 3);
 	rl_on_new_line();
 	rl_replace_line("", 0);
